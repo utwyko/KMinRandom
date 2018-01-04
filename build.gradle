@@ -20,8 +20,10 @@ repositories {
 
 dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
-    compile "junit:junit:4.12"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    testCompile "junit:junit:4.12"
+    testCompile 'org.assertj:assertj-core:3.9.0'
 }
 
 compileKotlin {
