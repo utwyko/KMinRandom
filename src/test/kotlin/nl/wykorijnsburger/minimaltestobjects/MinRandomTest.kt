@@ -5,28 +5,65 @@ import org.junit.Test
 
 class MinRandomTest {
 
+    data class NullableDC(val nullableString: String?,
+                          val nullableInt: Int?,
+                          val nullableListOfStrings: List<String>?,
+                          val nullableSetOfStrings: Set<String>?,
+                          val nullableMapOfStrings: Map<String, String>?)
+
     @Test
     fun `Should generate nullable fields as null`() {
-        val randomDC = generateMinRandom(DC::class)
+        val randomDC = NullableDC::class.minRandom()
 
         assertThat(randomDC.nullableString).isNull()
         assertThat(randomDC.nullableInt).isNull()
         assertThat(randomDC.nullableListOfStrings).isNull()
+        assertThat(randomDC.nullableSetOfStrings).isNull()
+        assertThat(randomDC.nullableMapOfStrings).isNull()
     }
 
-    @Test
-    fun `Should generate min random objects using extension method`() {
-        val randomDC = DC::class.minRandom()
-
-        assertThat(randomDC).isNotNull()
-    }
+    data class ListDC(val list: List<String>)
 
     @Test
     fun `Should generate lists as empty lists`() {
-        val randomDC = DC::class.minRandom()
+        val randomDC = ListDC::class.minRandom()
 
-        assertThat(randomDC.listOfStrings).isEmpty()
+        assertThat(randomDC.list).isEmpty()
     }
+
+    data class SetDC(val set: List<String>)
+
+    @Test
+    fun `Should generate sets as empty sets`() {
+        val randomDC = SetDC::class.minRandom()
+
+        assertThat(randomDC.set).isEmpty()
+    }
+
+    data class IterableDC(val iterable: Iterable<String>)
+
+    @Test
+    fun `Should generate iterables as empty iterables`() {
+        val randomDC = IterableDC::class.minRandom()
+
+        assertThat(randomDC.iterable).isEmpty()
+    }
+
+    data class MapDC(val map: Map<String, String>,
+                     val mutableMap: MutableMap<String, String>)
+
+    @Test
+    fun `Should generate maps as empty maps`() {
+        val randomDC = MapDC::class.minRandom()
+
+        assertThat(randomDC.map).isEmpty()
+        assertThat(randomDC.mutableMap).isEmpty()
+    }
+
+    data class DCWithNestedDC(val normalField: String,
+                              val nestedDC: NestedDC)
+
+    data class NestedDC(val normalField: String)
 
     @Test
     fun `Should generate nested DCs`() {
@@ -34,16 +71,4 @@ class MinRandomTest {
 
         assertThat(randomDCWithNestedDC.nestedDC.normalField).isNotNull()
     }
-
-    data class DC(val nonNullableString: String,
-                  val nullableString: String?,
-                  val nonNullableInt: Int,
-                  val nullableInt: Int?,
-                  val listOfStrings: List<String>,
-                  val nullableListOfStrings: List<String>?)
-
-    data class DCWithNestedDC(val normalField: String,
-                              val nestedDC: NestedDC)
-
-    data class NestedDC(val normalField: String)
 }

@@ -10,6 +10,9 @@ import kotlin.streams.asSequence
 
 private val random = Random()
 
+/**
+ * Generates a minimal random instance of the
+ */
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
 
 fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
@@ -27,9 +30,10 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
                     type == Float::class.createType() -> random.nextFloat()
                     type == Double::class.createType() -> random.nextDouble()
                     type == Boolean::class.createType() -> random.nextBoolean()
-                    listType == List::class.starProjectedType -> {
-                        emptyList<Any>()
-                    }
+                    listType == List::class.starProjectedType -> emptyList<Any>()
+                    listType == Set::class.starProjectedType -> emptySet<Any>()
+                    listType == Iterable::class.starProjectedType -> emptyList<Any>()
+                    listType == Map::class.starProjectedType -> emptyMap<Any, Any>()
                     else -> generateMinRandom(type.jvmErasure)
                 }
             }
