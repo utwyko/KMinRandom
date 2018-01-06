@@ -3,7 +3,7 @@
 KMinRandom is a library that generates minimal instances of [Kotlin data classes](https://kotlinlang.org/docs/reference/data-classes.html) for use in tests. A minimal implementation means:
 
 * Nullable values will be null
-* Lists will be empty lists
+* Collections will be empty collections
 
 ## Motivation
 The goal of KMinRandom is to make tests more readable.

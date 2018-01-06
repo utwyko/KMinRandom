@@ -35,7 +35,7 @@ compileTestKotlin {
 }
 
 jar {
-    baseName = 'minrandom'
+    baseName = 'kminrandom'
 }
 
 publishing {

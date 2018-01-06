@@ -1,4 +1,4 @@
-package nl.wykorijnsburger.minimaltestobjects
+package nl.wykorijnsburger.kminrandom
 
 import java.util.*
 import kotlin.reflect.KClass

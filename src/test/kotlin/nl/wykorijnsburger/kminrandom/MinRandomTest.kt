@@ -1,4 +1,4 @@
-package nl.wykorijnsburger.minimaltestobjects
+package nl.wykorijnsburger.kminrandom
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
