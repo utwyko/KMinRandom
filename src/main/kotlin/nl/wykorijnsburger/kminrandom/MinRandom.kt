@@ -2,7 +2,7 @@ package nl.wykorijnsburger.kminrandom
 
 import java.util.*
 import kotlin.reflect.KClass
-import kotlin.reflect.full.createType
+import kotlin.reflect.KClassifier
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
@@ -16,36 +16,86 @@ private val random = Random()
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
 
 fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
-    val parameters = clazz.primaryConstructor!!.parameters
+    // Supported types can be directly returned without inspecting constructor
+    if (randomMap.containsKey(clazz)) {
+        return clazz.randomInstance() as T
+    }
+
+    clazz.checkForUnsupportedTypes()
+
+    val primaryConstructor = clazz.primaryConstructor!!
+    val parameters = primaryConstructor.parameters
 
     val constructorArguments = parameters
-            .map {
-                val type = it.type
-                val listType = it.type.classifier?.starProjectedType
-                when {
-                    type.isMarkedNullable -> null
-                    type == String::class.createType() -> randomString()
-                    type == Int::class.createType() -> random.nextInt()
-                    type == Long::class.createType() -> random.nextLong()
-                    type == Float::class.createType() -> random.nextFloat()
-                    type == Double::class.createType() -> random.nextDouble()
-                    type == Boolean::class.createType() -> random.nextBoolean()
-                    listType == List::class.starProjectedType -> emptyList<Any>()
-                    listType == Set::class.starProjectedType -> emptySet<Any>()
-                    listType == Iterable::class.starProjectedType -> emptyList<Any>()
-                    listType == Map::class.starProjectedType -> emptyMap<Any, Any>()
-                    else -> generateMinRandom(type.jvmErasure)
-                }
-            }
+        .map {
+            val type = it.type
 
-    return clazz.primaryConstructor!!.call(*constructorArguments.toTypedArray())
+            if (type.isMarkedNullable) {
+                null
+            } else {
+                type.classifier?.randomInstance()
+            }
+        }
+
+    return primaryConstructor.call(*constructorArguments.toTypedArray())
 }
 
-private fun randomString(): String {
-    val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+private fun KClassifier.randomInstance(): Any {
+    return randomMap[this] ?: this.starProjectedType.jvmErasure.minRandom()
+}
 
-    return random.ints(10, 0, source.length)
-            .asSequence()
-            .map(source::get)
-            .joinToString("")
+private fun <T :Any> KClass<T>.checkForUnsupportedTypes(): Unit {
+    if (randomMap.containsKey(this)) {
+        return
+    }
+
+    val primaryConstructor = primaryConstructor
+
+    if (primaryConstructor == null) {
+        throw RuntimeException("Could not generate random instance of $this")
+    } else {
+        primaryConstructor.parameters
+            .map { it.type.jvmErasure }
+            .forEach { it.checkForUnsupportedTypes() }
+    }
+}
+
+private val randomMap = mapOf(
+    // Numbers
+    Double::class to random.nextDouble(),
+    Float::class to random.nextFloat(),
+    Long::class to random.nextLong(),
+    Int::class to random.nextInt(),
+    Short::class to random.nextInt().toShort(),
+    Byte::class to random.nextInt().toByte(),
+
+    Char::class to randomString().first(),
+    String::class to randomString(),
+    Boolean::class to random.nextBoolean(),
+
+    // Arrays
+    DoubleArray::class to doubleArrayOf(),
+    FloatArray::class to floatArrayOf(),
+    LongArray::class to longArrayOf(),
+    IntArray::class to intArrayOf(),
+    ShortArray::class to shortArrayOf(),
+    ByteArray::class to byteArrayOf(),
+    CharArray::class to charArrayOf(),
+    BooleanArray::class to booleanArrayOf(),
+
+    // Collections
+    List::class to emptyList<Any>(),
+    Set::class to emptySet<Any>(),
+    Iterable::class to emptyList<Any>(),
+    Sequence::class to emptySequence<Any>(),
+    Map::class to emptyMap<Any, Any>()
+)
+
+private fun randomString(): String {
+    val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+    return random.ints(random.nextInt(50).toLong(), 0, source.length)
+        .asSequence()
+        .map(source::get)
+        .joinToString("")
 }
