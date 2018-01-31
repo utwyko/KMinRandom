@@ -3,6 +3,7 @@ package nl.wykorijnsburger.kminrandom
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test
+import java.sql.SQLData
 import java.time.Instant
 import java.time.LocalDate
 import java.util.*
@@ -79,7 +80,8 @@ class MinRandomTest {
         val nullableListOfStrings: List<String>?,
         val nullableSetOfStrings: Set<String>?,
         val nullableMapOfStrings: Map<String, String>?,
-        val nullableSequenceOfStrings: Sequence<String>?
+        val nullableSequenceOfStrings: Sequence<String>?,
+        val nullableQueueOfStrings: Queue<String>?
     )
 
     @Test
@@ -92,6 +94,7 @@ class MinRandomTest {
         assertThat(randomDC.nullableSetOfStrings).isNull()
         assertThat(randomDC.nullableMapOfStrings).isNull()
         assertThat(randomDC.nullableSequenceOfStrings).isNull()
+        assertThat(randomDC.nullableQueueOfStrings).isNull()
     }
 
     data class ListDC(val list: List<String>)
@@ -130,6 +133,15 @@ class MinRandomTest {
         assertThat(randomDC.sequence.count()).isEqualTo(0)
     }
 
+    data class QueueDC(val queue: Queue<String>)
+
+    @Test
+    fun `Should generate queues as empty queues`() {
+        val randomDC = QueueDC::class.minRandom()
+
+        assertThat(randomDC.queue.count()).isEqualTo(0)
+    }
+
     data class MapDC(
         val map: Map<String, String>,
         val mutableMap: MutableMap<String, String>
@@ -157,13 +169,13 @@ class MinRandomTest {
         assertThat(randomDCWithNestedDC.nestedDC.normalField).isNotNull()
     }
 
-    data class UnsupportedTypeDC(val date: Date)
+    data class UnsupportedTypeDC(val sqlData: SQLData)
 
     @Test
     fun `Should throw RuntimeException when class contains unsupported type`() {
         assertThatThrownBy { UnsupportedTypeDC::class.minRandom() }
             .isInstanceOf(RuntimeException::class.java)
-            .hasMessage("Could not generate random instance of class java.util.Date")
+            .hasMessage("Could not generate random instance of class java.sql.SQLData")
     }
 
     @Test

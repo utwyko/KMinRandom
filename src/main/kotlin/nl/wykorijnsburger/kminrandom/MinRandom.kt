@@ -94,6 +94,7 @@ private val randomMap = mapOf(
     Iterable::class to emptyList<Any>(),
     Sequence::class to emptySequence<Any>(),
     Map::class to emptyMap<Any, Any>(),
+    Queue::class to LinkedList<Any>(),
 
     // Dates
     Date::class to Date.from(Instant.now()),
