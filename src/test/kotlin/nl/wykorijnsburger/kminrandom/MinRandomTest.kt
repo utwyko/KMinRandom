@@ -36,30 +36,6 @@ class MinRandomTest {
         assertThat(randomDC.string).isNotNull()
     }
 
-    data class ArraysDC(
-        val doubleArray: DoubleArray,
-        val floatArray: FloatArray,
-        val longArray: LongArray,
-        val intArray: IntArray,
-        val shortArray: ShortArray,
-        val byteArray: ByteArray,
-        val charArray: CharArray,
-        val booleanArray: BooleanArray
-    )
-
-    @Test
-    fun `Should generate random values for Arrays`() {
-        val randomDC = ArraysDC::class.minRandom()
-
-        assertThat(randomDC.doubleArray).isEmpty()
-        assertThat(randomDC.floatArray).isEmpty()
-        assertThat(randomDC.longArray).isEmpty()
-        assertThat(randomDC.intArray).isEmpty()
-        assertThat(randomDC.shortArray).isEmpty()
-        assertThat(randomDC.byteArray).isEmpty()
-        assertThat(randomDC.charArray).isEmpty()
-        assertThat(randomDC.booleanArray).isEmpty()
-    }
 
     data class DatesDC(val date: Date,
                       val localDate: LocalDate,
@@ -72,87 +48,6 @@ class MinRandomTest {
         assertThat(randomDC.date).isNotNull()
         assertThat(randomDC.localDate).isNotNull()
         assertThat(randomDC.instant).isNotNull()
-    }
-
-    data class NullableDC(
-        val nullableString: String?,
-        val nullableInt: Int?,
-        val nullableListOfStrings: List<String>?,
-        val nullableSetOfStrings: Set<String>?,
-        val nullableMapOfStrings: Map<String, String>?,
-        val nullableSequenceOfStrings: Sequence<String>?,
-        val nullableQueueOfStrings: Queue<String>?
-    )
-
-    @Test
-    fun `Should generate nullable fields as null`() {
-        val randomDC = NullableDC::class.minRandom()
-
-        assertThat(randomDC.nullableString).isNull()
-        assertThat(randomDC.nullableInt).isNull()
-        assertThat(randomDC.nullableListOfStrings).isNull()
-        assertThat(randomDC.nullableSetOfStrings).isNull()
-        assertThat(randomDC.nullableMapOfStrings).isNull()
-        assertThat(randomDC.nullableSequenceOfStrings).isNull()
-        assertThat(randomDC.nullableQueueOfStrings).isNull()
-    }
-
-    data class ListDC(val list: List<String>)
-
-    @Test
-    fun `Should generate lists as empty lists`() {
-        val randomDC = ListDC::class.minRandom()
-
-        assertThat(randomDC.list).isEmpty()
-    }
-
-    data class SetDC(val set: List<String>)
-
-    @Test
-    fun `Should generate sets as empty sets`() {
-        val randomDC = SetDC::class.minRandom()
-
-        assertThat(randomDC.set).isEmpty()
-    }
-
-    data class IterableDC(val iterable: Iterable<String>)
-
-    @Test
-    fun `Should generate iterables as empty iterables`() {
-        val randomDC = IterableDC::class.minRandom()
-
-        assertThat(randomDC.iterable).isEmpty()
-    }
-
-    data class SequenceDC(val sequence: Sequence<String>)
-
-    @Test
-    fun `Should generate sequences as empty sequences`() {
-        val randomDC = SequenceDC::class.minRandom()
-
-        assertThat(randomDC.sequence.count()).isEqualTo(0)
-    }
-
-    data class QueueDC(val queue: Queue<String>)
-
-    @Test
-    fun `Should generate queues as empty queues`() {
-        val randomDC = QueueDC::class.minRandom()
-
-        assertThat(randomDC.queue.count()).isEqualTo(0)
-    }
-
-    data class MapDC(
-        val map: Map<String, String>,
-        val mutableMap: MutableMap<String, String>
-    )
-
-    @Test
-    fun `Should generate maps as empty maps`() {
-        val randomDC = MapDC::class.minRandom()
-
-        assertThat(randomDC.map).isEmpty()
-        assertThat(randomDC.mutableMap).isEmpty()
     }
 
     data class DCWithNestedDC(
