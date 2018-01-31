@@ -1,5 +1,7 @@
 # KMinRandom
 
+[![Build Status](https://travis-ci.org/utwyko/KMinRandom.svg?branch=master)](https://travis-ci.org/utwyko/KMinRandom)
+
 KMinRandom is a library that generates minimal instances of [Kotlin data classes](https://kotlinlang.org/docs/reference/data-classes.html) for use in tests. A minimal implementation means:
 
 * Nullable values will be null
