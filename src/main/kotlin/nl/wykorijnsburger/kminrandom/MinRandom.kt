@@ -1,5 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
+import java.time.Instant
+import java.time.LocalDate
 import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
@@ -11,10 +13,13 @@ import kotlin.streams.asSequence
 private val random = Random()
 
 /**
- * Generates a minimal random instance of the
+ * Generates a minimal random instance of the supplied KClass
  */
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
 
+/**
+ * Generates a minimal random instance of the supplied KClass
+ */
 fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     // Supported types can be directly returned without inspecting constructor
     if (randomMap.containsKey(clazz)) {
@@ -88,7 +93,12 @@ private val randomMap = mapOf(
     Set::class to emptySet<Any>(),
     Iterable::class to emptyList<Any>(),
     Sequence::class to emptySequence<Any>(),
-    Map::class to emptyMap<Any, Any>()
+    Map::class to emptyMap<Any, Any>(),
+
+    // Dates
+    Date::class to Date.from(Instant.now()),
+    Instant::class to Instant.now(),
+    LocalDate::class to LocalDate.now()
 )
 
 private fun randomString(): String {
