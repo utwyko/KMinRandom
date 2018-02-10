@@ -49,6 +49,21 @@ class ExampleTest {
 }
 ```
 
+## Download
+
+Gradle:
+```groovy
+compile 'nl.wykorijnsburger.kminrandom:kminrandom:0.0.1'
+```
+or Maven:
+```xml
+<dependency>
+  <groupId>nl.wykorijnsburger.kminrandom</groupId>
+  <artifactId>kminrandom</artifactId>
+  <version>0.0.1</version>
+</dependency>
+```
+
 ## License
     Copyright 2018 Wyko Rijnsburger
     
