@@ -1,5 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
+import java.math.BigDecimal
+import java.math.BigInteger
 import java.time.Instant
 import java.time.LocalDate
 import java.util.*
@@ -99,7 +101,11 @@ private val randomMap = mapOf(
     // Dates
     Date::class to Date.from(Instant.now()),
     Instant::class to Instant.now(),
-    LocalDate::class to LocalDate.now()
+    LocalDate::class to LocalDate.now(),
+
+    // Java.Math
+    BigDecimal::class to BigDecimal.valueOf(random.nextDouble()),
+    BigInteger::class to BigInteger(5, random)
 )
 
 private fun randomString(): String {
