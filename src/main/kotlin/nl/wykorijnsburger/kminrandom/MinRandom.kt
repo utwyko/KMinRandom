@@ -8,6 +8,7 @@ import java.time.ZonedDateTime
 import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
+import kotlin.reflect.KType
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
@@ -37,11 +38,10 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     val constructorArguments = parameters
         .map {
             val type = it.type
-
-            if (type.isMarkedNullable) {
-                null
-            } else {
-                type.classifier?.randomInstance()
+            when {
+                type.isMarkedNullable -> null
+                type.randomEnum() != null -> type.randomEnum()
+                else -> type.classifier?.randomInstance()
             }
         }
 
@@ -52,7 +52,7 @@ private fun KClassifier.randomInstance(): Any {
     return randomMap[this] ?: this.starProjectedType.jvmErasure.minRandom()
 }
 
-private fun <T :Any> KClass<T>.checkForUnsupportedTypes(): Unit {
+private fun <T : Any> KClass<T>.checkForUnsupportedTypes(): Unit {
     if (randomMap.containsKey(this)) {
         return
     }
@@ -121,4 +121,14 @@ private fun randomString(): String {
         .asSequence()
         .map(source::get)
         .joinToString("")
+}
+
+private fun KType.randomEnum(): Any? {
+    val enumConstants = this.jvmErasure.java.enumConstants
+
+    return if (enumConstants == null || enumConstants.isEmpty()) {
+        null
+    } else {
+        enumConstants[random.nextInt(enumConstants.size)]
+    }
 }
