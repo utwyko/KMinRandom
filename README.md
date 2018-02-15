@@ -53,14 +53,14 @@ class ExampleTest {
 
 Gradle:
 ```groovy
-compile 'nl.wykorijnsburger.kminrandom:kminrandom:0.0.2'
+compile 'nl.wykorijnsburger.kminrandom:kminrandom:0.0.3'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>nl.wykorijnsburger.kminrandom</groupId>
   <artifactId>kminrandom</artifactId>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 </dependency>
 ```
 
