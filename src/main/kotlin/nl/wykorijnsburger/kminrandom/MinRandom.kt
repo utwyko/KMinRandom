@@ -4,6 +4,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.time.Instant
 import java.time.LocalDate
+import java.time.ZonedDateTime
 import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
@@ -98,14 +99,19 @@ private val randomMap = mapOf(
     Map::class to emptyMap<Any, Any>(),
     Queue::class to LinkedList<Any>(),
 
-    // Dates
-    Date::class to Date.from(Instant.now()),
+    // Java.Time
     Instant::class to Instant.now(),
     LocalDate::class to LocalDate.now(),
+    ZonedDateTime::class to ZonedDateTime.now(),
 
     // Java.Math
     BigDecimal::class to BigDecimal.valueOf(random.nextDouble()),
-    BigInteger::class to BigInteger(5, random)
+    BigInteger::class to BigInteger(5, random),
+
+    // Java.Util
+    Date::class to Date.from(Instant.now()),
+    Optional::class to Optional.empty<Any>(),
+    UUID::class to UUID.randomUUID()
 )
 
 private fun randomString(): String {

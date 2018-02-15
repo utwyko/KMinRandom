@@ -4,9 +4,6 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.Test
 import java.sql.SQLData
-import java.time.Instant
-import java.time.LocalDate
-import java.util.*
 
 class MinRandomTest {
 
@@ -34,20 +31,6 @@ class MinRandomTest {
         assertThat(randomDC.byte).isNotNull()
         assertThat(randomDC.boolean).isNotNull()
         assertThat(randomDC.string).isNotNull()
-    }
-
-
-    data class DatesDC(val date: Date,
-                      val localDate: LocalDate,
-                      val instant: Instant)
-
-    @Test
-    fun `Should generate random Date values`() {
-        val randomDC = DatesDC::class.minRandom()
-
-        assertThat(randomDC.date).isNotNull()
-        assertThat(randomDC.localDate).isNotNull()
-        assertThat(randomDC.instant).isNotNull()
     }
 
     data class DCWithNestedDC(
