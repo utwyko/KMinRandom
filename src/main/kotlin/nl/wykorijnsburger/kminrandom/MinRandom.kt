@@ -3,6 +3,7 @@ package nl.wykorijnsburger.kminrandom
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
 import kotlin.reflect.KFunction
+import kotlin.reflect.KParameter
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
@@ -26,17 +27,22 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     val constructor = clazz.getConstructorWithTheLeastArguments()!!
     val parameters = constructor.parameters
 
-    val constructorArguments = parameters
-        .map {
+    val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
+    parameters
+        .filter { !it.isOptional }
+        .forEach {
             val type = it.type
-            when {
+
+            val randomParameter = when {
                 type.isMarkedNullable -> null
                 type.randomEnum() != null -> type.randomEnum()
                 else -> type.classifier?.randomInstance()
             }
+
+            parameterMap[it] = randomParameter
         }
 
-    return constructor.call(*constructorArguments.toTypedArray())
+    return constructor.callBy(parameterMap)
 }
 
 private fun KClassifier.randomInstance(): Any {

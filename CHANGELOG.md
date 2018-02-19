@@ -1,5 +1,9 @@
 # Change Log
 
+## 0.0.4
+* Support for generating Java class members
+* Use default values when available
+
 ## 0.0.3 (15 February 2018)
 * Add support for Optional, ZonedDateTime and UUID
 * Add support for Enums
