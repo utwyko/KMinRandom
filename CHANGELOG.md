@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.4
+## 0.0.4 (21 February 2018)
 * Support for generating Java class members
 * Use default values when available
 
