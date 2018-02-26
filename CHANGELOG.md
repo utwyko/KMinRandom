@@ -1,7 +1,8 @@
 # Change Log
 
-## 0.0.4 (21 February 2018)
+## 0.0.4 (26 February 2018)
 * Support for generating Java class members
+* Support for LocalTime
 * Use default values when available
 
 ## 0.0.3 (15 February 2018)

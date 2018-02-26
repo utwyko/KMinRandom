@@ -4,11 +4,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZonedDateTime
 
 class JavaTimeTest {
     data class TimeDC(
         val localDate: LocalDate,
+        val localTime: LocalTime,
         val instant: Instant,
         val zonedDateTime: ZonedDateTime
     )
@@ -18,6 +20,7 @@ class JavaTimeTest {
         val randomDC = TimeDC::class.minRandom()
 
         assertThat(randomDC.localDate).isNotNull()
+        assertThat(randomDC.localTime).isNotNull()
         assertThat(randomDC.instant).isNotNull()
         assertThat(randomDC.zonedDateTime).isNotNull()
     }

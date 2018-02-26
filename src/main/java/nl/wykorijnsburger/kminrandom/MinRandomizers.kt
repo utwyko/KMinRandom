@@ -4,6 +4,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 import java.time.Instant
 import java.time.LocalDate
+import java.time.LocalTime
 import java.time.ZonedDateTime
 import java.util.*
 import kotlin.reflect.KType
@@ -47,6 +48,7 @@ internal val classToMinRandom = mapOf(
     // Java.Time
     Instant::class to Instant.now(),
     LocalDate::class to LocalDate.now(),
+    LocalTime::class to LocalTime.now(),
     ZonedDateTime::class to ZonedDateTime.now(),
 
     // Java.Math
