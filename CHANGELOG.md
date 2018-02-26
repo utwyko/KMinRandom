@@ -4,6 +4,7 @@
 * Support for generating Java class members
 * Support for LocalTime
 * Use default values when available
+* Use null for unsupported types if they are nullable
 
 ## 0.0.3 (15 February 2018)
 * Add support for Optional, ZonedDateTime and UUID

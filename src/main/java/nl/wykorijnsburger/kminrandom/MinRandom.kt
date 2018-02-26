@@ -49,7 +49,7 @@ private fun KClassifier.randomInstance(): Any {
     return classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()
 }
 
-private fun <T : Any> KClass<T>.checkForUnsupportedTypes(): Unit {
+private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
     if (classToMinRandom.containsKey(this)) {
         return
     }
@@ -60,6 +60,7 @@ private fun <T : Any> KClass<T>.checkForUnsupportedTypes(): Unit {
         throw RuntimeException("Could not generate random instance of $this")
     } else {
         constructor.parameters
+            .filter { !it.isOptional && !it.type.isMarkedNullable }
             .map { it.type.jvmErasure }
             .forEach { it.checkForUnsupportedTypes() }
     }

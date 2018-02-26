@@ -62,4 +62,17 @@ class MinRandomTest {
 
         assertThat(randomInt).isNotNull()
     }
+
+    data class NullableTypesDC(
+        val unsupportedType: SQLData?,
+        val string: String?
+    )
+
+    @Test
+    fun `Should generate null values for unsupported types if they are nullable`() {
+        val randomDC = NullableTypesDC::class.minRandom()
+
+        assertThat(randomDC.unsupportedType).isNull()
+        assertThat(randomDC.string).isNull()
+    }
 }
