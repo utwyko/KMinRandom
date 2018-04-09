@@ -7,12 +7,13 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZonedDateTime
 import java.util.*
+import java.util.concurrent.ThreadLocalRandom
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.streams.asSequence
 
 
-private val random = Random()
+private val random = ThreadLocalRandom.current()
 
 internal val classToMinRandom = mapOf(
     // Numbers
@@ -64,10 +65,10 @@ internal val classToMinRandom = mapOf(
 private fun randomString(): String {
     val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-    return random.ints(random.nextInt(50).toLong(), 0, source.length)
+    return random.ints(random.nextInt(1, 50).toLong(), 0, source.length)
         .asSequence()
         .map(source::get)
-        .joinToString()
+        .joinToString("")
 }
 
 internal fun KType.randomEnum(): Any? {
