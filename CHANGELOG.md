@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.5
+* Improve randomString implementation
+
 ## 0.0.4 (26 February 2018)
 * Support for generating Java class members
 * Support for LocalTime
