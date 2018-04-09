@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.5
+## 0.0.5 (9 April 2018)
 * Improve randomString implementation
 
 ## 0.0.4 (26 February 2018)
