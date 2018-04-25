@@ -4,6 +4,7 @@ apply plugin: 'kotlin'
 
 buildscript {
     ext.kotlin_version = '1.2.40'
+    ext.junit_jupiter_version = '5.1.1'
 
     repositories {
         mavenCentral()
@@ -21,8 +22,13 @@ dependencies {
     compile "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     compile "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    testCompile "junit:junit:4.12"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:$junit_jupiter_version"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
     testCompile 'org.assertj:assertj-core:3.9.0'
+}
+
+test {
+    useJUnitPlatform()
 }
 
 compileKotlin {
