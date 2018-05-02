@@ -36,7 +36,7 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 
             val randomParameter = when {
                 type.isMarkedNullable -> null
-                type.randomEnum() != null -> type.randomEnum()
+                type.jvmErasure.java.isEnum -> type.randomEnum()
                 else -> type.classifier?.randomInstance()
             }
 

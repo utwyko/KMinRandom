@@ -18,7 +18,7 @@ class JavaClassTest {
     }
 
     @Test
-    fun `Should use constructor with the least amount of arguments when instaniating a Java class`() {
+    fun `Should use constructor with the least amount of arguments when instantiating a Java class`() {
         val randomDC = JavaClassDC::class.minRandom()
 
         assertThat(randomDC.sampleJavaClass.string1).isNotNull()
