@@ -18,8 +18,9 @@ fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
  */
 fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     // Supported types can be directly returned without inspecting constructor
-    if (classToMinRandom.containsKey(clazz)) {
-        return clazz.randomInstance() as T
+    when {
+        classToMinRandom.containsKey(clazz) -> return clazz.randomInstance() as T
+        clazz.java.isEnum -> return clazz.randomEnum()
     }
 
     clazz.checkForUnsupportedTypes()

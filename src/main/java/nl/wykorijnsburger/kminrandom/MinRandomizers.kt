@@ -8,6 +8,7 @@ import java.time.LocalTime
 import java.time.ZonedDateTime
 import java.util.*
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.streams.asSequence
@@ -71,12 +72,16 @@ private fun randomString(): String {
         .joinToString("")
 }
 
-internal fun KType.randomEnum(): Any? {
-    val enumConstants = this.jvmErasure.java.enumConstants
+internal fun <T: Any> KClass<T>.randomEnum(): T {
+    val enumConstants = java.enumConstants
 
     return if (enumConstants == null || enumConstants.isEmpty()) {
-        null
+        throw RuntimeException("Cannot generate random value for empty enum ${this.simpleName}")
     } else {
         enumConstants[random.nextInt(enumConstants.size)]
     }
+}
+
+internal fun KType.randomEnum(): Any? {
+    return this.jvmErasure.randomEnum()
 }

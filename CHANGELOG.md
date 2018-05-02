@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.6 (UNRELEASED)
+* Fix direct random generation of Enum
+
 ## 0.0.5 (9 April 2018)
 * Improve randomString implementation
 
