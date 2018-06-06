@@ -1,6 +1,7 @@
 # KMinRandom
 
 [![Build Status](https://travis-ci.org/utwyko/KMinRandom.svg?branch=master)](https://travis-ci.org/utwyko/KMinRandom)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/nl.wykorijnsburger.kminrandom/kminrandom/badge.svg)](https://maven-badges.herokuapp.com/maven-central/nl.wykorijnsburger.kminrandom/kminrandom)
 
 KMinRandom is a library that generates minimal instances of [Kotlin data classes](https://kotlinlang.org/docs/reference/data-classes.html) for use in tests. A minimal implementation means:
 
