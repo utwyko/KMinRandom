@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 
-class DefaultValueTest {
+internal class DefaultValueTest {
 
     data class DefaultValuesDC(
         val stringWithDefaultValue: String = "DEFAULT_VALUE",

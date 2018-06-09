@@ -6,7 +6,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 
 
-class JavaMathTest {
+internal class JavaMathTest {
 
     data class JavaMathDC(
         val bigInteger: BigInteger,

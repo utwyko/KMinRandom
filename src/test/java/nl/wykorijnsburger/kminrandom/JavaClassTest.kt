@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 
-class JavaClassTest {
+internal class JavaClassTest {
 
     data class JavaClassDC(
         val sampleJavaClass: SampleJavaClass

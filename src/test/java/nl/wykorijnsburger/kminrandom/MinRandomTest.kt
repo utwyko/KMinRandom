@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import java.sql.SQLData
 
-class MinRandomTest {
+internal class MinRandomTest {
 
     data class BasicTypesDC(
         val double: Double,

@@ -3,7 +3,7 @@ package nl.wykorijnsburger.kminrandom
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class ExampleTest {
+internal class ExampleTest {
 
     @Test
     fun `Without KMinRandom - isBlue() should return true when colour is blue`() {

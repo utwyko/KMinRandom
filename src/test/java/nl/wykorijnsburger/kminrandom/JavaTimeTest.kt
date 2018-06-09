@@ -7,7 +7,7 @@ import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZonedDateTime
 
-class JavaTimeTest {
+internal class JavaTimeTest {
     data class TimeDC(
         val localDate: LocalDate,
         val localTime: LocalTime,

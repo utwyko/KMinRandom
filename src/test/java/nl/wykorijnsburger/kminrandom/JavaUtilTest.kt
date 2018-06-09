@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.util.*
 
-class JavaUtilTest {
+internal class JavaUtilTest {
 
     data class JavaUtilDC(
         val optional: Optional<String>,

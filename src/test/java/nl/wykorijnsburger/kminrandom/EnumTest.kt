@@ -5,7 +5,7 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 
 
-class EnumTest {
+internal class EnumTest {
 
     data class EnumDC(
         val sampleEnum: SampleEnum,
