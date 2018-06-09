@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.6 (UNRELEASED)
+## 0.0.6 (2 May 2018)
 * Fix direct random generation of Enum
 
 ## 0.0.5 (9 April 2018)
