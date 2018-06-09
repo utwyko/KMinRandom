@@ -1,5 +1,8 @@
 # Change Log
 
+## 0.0.7 (UNRELEASED)
+* Add new `minRandomCached()` method that fetches an already cached generated instance from a cache if possible. 
+
 ## 0.0.6 (2 May 2018)
 * Fix direct random generation of Enum
 
