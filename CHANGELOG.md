@@ -2,6 +2,7 @@
 
 ## 0.0.7 (UNRELEASED)
 * Add new `minRandomCached()` method that fetches an already cached generated instance from a cache if possible. 
+* Throw descriptive exception when trying to generate random sealed class instance.
 
 ## 0.0.6 (2 May 2018)
 * Fix direct random generation of Enum

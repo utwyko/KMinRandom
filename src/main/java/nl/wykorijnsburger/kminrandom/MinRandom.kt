@@ -1,9 +1,6 @@
 package nl.wykorijnsburger.kminrandom
 
-import kotlin.reflect.KClass
-import kotlin.reflect.KClassifier
-import kotlin.reflect.KFunction
-import kotlin.reflect.KParameter
+import kotlin.reflect.*
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
@@ -26,6 +23,9 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     clazz.checkForUnsupportedTypes()
 
     val constructor = clazz.getConstructorWithTheLeastArguments()!!
+
+    if (constructor.visibility == KVisibility.PRIVATE) throw privateConstructorException
+
     val parameters = constructor.parameters
 
     val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
@@ -75,3 +75,6 @@ private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction
     return constructors.sortedBy { it.parameters.size }
         .firstOrNull()
 }
+
+private val privateConstructorException =
+    RuntimeException("Cannot generate random instance of class with a private constructor. If you are trying to generate a random instance of a sealed class, try generating one the classes extending the sealed class.")
