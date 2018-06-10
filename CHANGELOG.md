@@ -1,6 +1,6 @@
 # Change Log
 
-## 0.0.7 (UNRELEASED)
+## 0.0.7 (10 June 2018)
 * Add new `minRandomCached()` method that fetches an already cached generated instance from a cache if possible. 
 * Throw descriptive exception when trying to generate random sealed class instance.
 
@@ -8,7 +8,7 @@
 * Fix direct random generation of Enum
 
 ## 0.0.5 (9 April 2018)
-* Improve randomString implementation
+* Improve randomString implementation1
 
 ## 0.0.4 (26 February 2018)
 * Support for generating Java class members
