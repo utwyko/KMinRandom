@@ -24,8 +24,8 @@ dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${versions.kotlin}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:${versions.kotlin}"
 
-    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junit_jupiter}"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junit_jupiter}"
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}"
     testImplementation 'org.assertj:assertj-core:3.10.0'
 }
 
