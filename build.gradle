@@ -1,18 +1,21 @@
 apply plugin: 'java-library'
 apply from: file('gradle/gradle-mvn-push.gradle')
 apply plugin: 'kotlin'
+apply plugin: "com.github.ben-manes.versions"
 
 buildscript {
     ext.versions = [
-            'kotlin': '1.2.51',
-            'junitJupiter': '5.1.1'
+            'kotlin': '1.2.71',
+            'junitJupiter': '5.3.1'
     ]
 
     repositories {
         mavenCentral()
+        jcenter()
     }
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${versions.kotlin}"
+        classpath "com.github.ben-manes:gradle-versions-plugin:0.20.0"
     }
 }
 
@@ -26,7 +29,7 @@ dependencies {
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${versions.junitJupiter}"
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${versions.junitJupiter}"
-    testImplementation 'org.assertj:assertj-core:3.10.0'
+    testImplementation 'org.assertj:assertj-core:3.11.1'
 }
 
 test {
@@ -38,4 +41,8 @@ compileKotlin {
 }
 compileTestKotlin {
     kotlinOptions.jvmTarget = "1.8"
+}
+
+wrapper {
+    distributionType = Wrapper.DistributionType.ALL
 }
