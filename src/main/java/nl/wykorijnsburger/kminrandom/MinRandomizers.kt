@@ -12,22 +12,23 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 import kotlin.streams.asSequence
+import kotlin.random.Random
 
 
 private val random = ThreadLocalRandom.current()
 
 internal val classToMinRandom = mapOf(
     // Numbers
-    Double::class to random.nextDouble(),
-    Float::class to random.nextFloat(),
-    Long::class to random.nextLong(),
-    Int::class to random.nextInt(),
-    Short::class to random.nextInt().toShort(),
-    Byte::class to random.nextInt().toByte(),
+    Double::class to Random.nextDouble(),
+    Float::class to Random.nextFloat(),
+    Long::class to Random.nextLong(),
+    Int::class to Random.nextInt(),
+    Short::class to Random.nextInt().toShort(),
+    Byte::class to Random.nextInt().toByte(),
 
     Char::class to randomString().first(),
     String::class to randomString(),
-    Boolean::class to random.nextBoolean(),
+    Boolean::class to Random.nextBoolean(),
 
     // Arrays
     DoubleArray::class to doubleArrayOf(),
@@ -54,7 +55,7 @@ internal val classToMinRandom = mapOf(
     ZonedDateTime::class to ZonedDateTime.now(),
 
     // Java.Math
-    BigDecimal::class to BigDecimal.valueOf(random.nextDouble()),
+    BigDecimal::class to BigDecimal.valueOf(Random.nextDouble()),
     BigInteger::class to BigInteger(5, random),
 
     // Java.Util
@@ -66,19 +67,19 @@ internal val classToMinRandom = mapOf(
 private fun randomString(): String {
     val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
-    return random.ints(random.nextInt(1, 50).toLong(), 0, source.length)
+    return random.ints(Random.nextInt(1, 50).toLong(), 0, source.length)
         .asSequence()
         .map(source::get)
         .joinToString("")
 }
 
-internal fun <T: Any> KClass<T>.randomEnum(): T {
+internal fun <T : Any> KClass<T>.randomEnum(): T {
     val enumConstants = java.enumConstants
 
     return if (enumConstants == null || enumConstants.isEmpty()) {
         throw RuntimeException("Cannot generate random value for empty enum ${this.simpleName}")
     } else {
-        enumConstants[random.nextInt(enumConstants.size)]
+        enumConstants[Random.nextInt(enumConstants.size)]
     }
 }
 
