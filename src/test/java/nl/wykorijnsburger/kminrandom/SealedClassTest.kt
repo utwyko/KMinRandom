@@ -1,16 +1,16 @@
 package nl.wykorijnsburger.kminrandom
 
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 
 class SealedClassTest {
 
     @Test
-    fun `Should throw exception explaining that sealed class are not supported`() {
-        assertThatThrownBy { SampleSealedClass::class.minRandom() }
-            .hasMessage("Cannot generate random instance of class with a private constructor. " +
-                    "If you are trying to generate a random instance of a sealed class, try generating one the classes extending the sealed class.")
+    fun `Should generate a random instance of a randomly selected sealed class`() {
+        val randomSealedClass = SampleSealedClass::class.minRandom()
+        assertThat(randomSealedClass.sharedValue).isNotNull()
+        assertThat(randomSealedClass).isInstanceOfAny(SealedClassImpl1::class.java, SealedClassImpl2::class.java)
     }
 }
 
@@ -18,7 +18,12 @@ sealed class SampleSealedClass {
     abstract val sharedValue: String
 }
 
-data class SealedClassImpl(
+data class SealedClassImpl1(
+    override val sharedValue: String,
+    val nonSharedValue: String
+) : SampleSealedClass()
+
+data class SealedClassImpl2(
     override val sharedValue: String,
     val nonSharedValue: String
 ) : SampleSealedClass()
