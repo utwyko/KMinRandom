@@ -1,4 +1,7 @@
 # Change Log
+## 0.0.8
+* Upgrade to Kotlin 1.3, use Kotlin 1.3 Random implementation where possible
+* Added the ability to generate a random instance of a [sealed class](https://kotlinlang.org/docs/reference/sealed-classes.html). A random subclass of the sealed class will be chosen and randomized.
 
 ## 0.0.7 (10 June 2018)
 * Add new `minRandomCached()` method that fetches an already cached generated instance from a cache if possible. 
