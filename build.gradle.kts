@@ -78,8 +78,8 @@ publishing {
                 name = "sonatype"
                 url = uri("https://oss.sonatype.org/service/local/staging/deploy/maven2/")
                 credentials {
-                    username = property("NEXUS_USERNAME") as String
-                    password = property("NEXUS_PASSWORD") as String
+                    username = property("NEXUS_USERNAME") as String?
+                    password = property("NEXUS_PASSWORD") as String?
                 }
             }
         }
