@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "nl.wykorijnsburger.kminrandom"
-version = "0.0.9-SNAPSHOT"
+version = "0.0.9"
 
 repositories {
     mavenCentral()
