@@ -2,20 +2,18 @@ package nl.wykorijnsburger.kminrandom
 
 import java.math.BigDecimal
 import java.math.BigInteger
+import java.net.URI
+import java.net.URL
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZonedDateTime
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
+import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
-import kotlin.streams.asSequence
-import kotlin.random.Random
 
-
-private val random = ThreadLocalRandom.current()
 
 internal val classToMinRandom = mapOf(
     // Numbers
@@ -61,17 +59,12 @@ internal val classToMinRandom = mapOf(
     // Java.Util
     Date::class to Date.from(Instant.now()),
     Optional::class to Optional.empty<Any>(),
-    UUID::class to UUID.randomUUID()
+    UUID::class to UUID.randomUUID(),
+
+    // Java.Net
+    URI::class to randomURI(),
+    URL::class to randomURI().toURL()
 )
-
-private fun randomString(): String {
-    val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
-
-    return random.ints(Random.nextInt(1, 50).toLong(), 0, source.length)
-        .asSequence()
-        .map(source::get)
-        .joinToString("")
-}
 
 internal fun <T : Any> KClass<T>.randomEnum(): T {
     val enumConstants = java.enumConstants
