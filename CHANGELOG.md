@@ -1,5 +1,8 @@
 # Change Log
-## 0.0.8
+## 0.0.9 (17 Dec 2018)
+* Add support for `java.net.URL` and `java.net.URI`.
+
+## 0.0.8 (2 Dec 2018)
 * Upgrade to Kotlin 1.3, use Kotlin 1.3 Random implementation where possible
 * Added the ability to generate a random instance of a [sealed class](https://kotlinlang.org/docs/reference/sealed-classes.html). A random subclass of the sealed class will be chosen and randomized.
 
