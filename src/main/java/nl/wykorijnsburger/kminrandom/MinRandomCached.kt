@@ -13,6 +13,8 @@ fun <T : Any> KClass<T>.minRandomCached() = generateMinRandomCached(this)
  */
 fun <T : Any> generateMinRandomCached(clazz: KClass<T>): T {
     val qualifiedClassName = clazz.qualifiedName
+
+    @Suppress("UNCHECKED_CAST")
     val cachedInstance = minRandomCache[qualifiedClassName] as T?
 
     if (cachedInstance == null) {

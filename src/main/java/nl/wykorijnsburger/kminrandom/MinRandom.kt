@@ -52,8 +52,9 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     return constructor.callBy(parameterMap)
 }
 
-private fun KClassifier.randomInstance(): Any {
-    return classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()
+@Suppress("UNCHECKED_CAST")
+private fun <T: Any> KClassifier.randomInstance(): T {
+    return (classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()) as T
 }
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
