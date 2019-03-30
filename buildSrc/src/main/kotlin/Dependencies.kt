@@ -2,7 +2,7 @@ object Versions {
     const val junitJupiter = "5.3.2"
     const val assertJ = "3.11.1"
     const val kotlin = "1.3.11"
-    const val benManesVersions = "0.20.0"
+    const val benManesVersions = "0.21.0"
 }
 
 object Plugins {
