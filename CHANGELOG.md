@@ -1,5 +1,6 @@
 # Change Log
 ## 0.10.0 (TBD)
+* Add support for Kotlin `object`, including Sealed Classes that are implemented by `object`s.
 
 ## 0.0.9 (17 Dec 2018)
 * Add support for `java.net.URL` and `java.net.URI`.

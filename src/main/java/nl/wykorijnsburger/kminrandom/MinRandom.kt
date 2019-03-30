@@ -16,12 +16,12 @@ fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
  */
 fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 
-    if (clazz.sealedSubclasses.isNotEmpty()) {
-        return sealedClassMinRandom(clazz)
-    }
+    val objectInstance = clazz.objectInstance
 
     // Supported types can be directly returned without inspecting constructor
     when {
+        objectInstance != null -> return objectInstance
+        clazz.sealedSubclasses.isNotEmpty() -> return sealedClassMinRandom(clazz)
         classToMinRandom.containsKey(clazz) -> return clazz.randomInstance() as T
         clazz.java.isEnum -> return clazz.randomEnum()
     }
@@ -57,9 +57,9 @@ private fun KClassifier.randomInstance(): Any {
 }
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
-    if (classToMinRandom.containsKey(this)) {
-        return
-    }
+    if (objectInstance != null) return
+
+    if (classToMinRandom.containsKey(this)) return
 
     val constructor = getConstructorWithTheLeastArguments()
 
