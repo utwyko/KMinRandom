@@ -34,12 +34,12 @@ tasks.withType<Wrapper> {
 
 task<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
-    classifier = "sources"
+    archiveClassifier.set("sources")
 }
 
 task<Jar>("javadocJar") {
     from(tasks.javadoc)
-    classifier = "javadoc"
+    archiveClassifier.set("javadoc")
 }
 
 publishing {
