@@ -14,8 +14,18 @@ The goal of KMinRandom is to make tests more readable by making it easy to insta
 
 In Kotlin, easily instantiable classes could be achieved by adding default values to data classes. However, this adds the risk of DCs being instantiated without all required values being set. Furthermore, when an additional property with a default value is added to the DC, the compiler will not force you to set the value in each existing contructor invocation. 
 
-## Example Usage
+## Usage
+KMinRandom provides two extension methods on `KClass`.
 
+* Use `.minRandom()` to generate a new random instance on each usage
+* Use `.minRandomCached()` to reuse the same random instance across multiple tests. This will improve the performance of your tests and should be used if you do not care about the uniqueness of the generated instances.
+
+KMinRandom contains a list of classes it can generate ([see code](https://github.com/utwyko/KMinRandom/blob/master/src/main/java/nl/wykorijnsburger/kminrandom/MinRandomizers.kt#L18)). For unknown values (such as your custom data classes), it will try to generate a random value for each of its non-optional constructor parameters.
+
+If certain classes can not be generated, an exception will be thrown. You can supply your own instance of the unsupported class by using `KMinRandom.supplyValueForClass()`.
+
+
+## Example Usage
 ```kotlin
 data class Car(val colour: String,
                val model: String,
