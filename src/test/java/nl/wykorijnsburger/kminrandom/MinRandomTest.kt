@@ -53,7 +53,7 @@ internal class MinRandomTest {
     fun `Should throw RuntimeException when class contains unsupported type`() {
         assertThatThrownBy { UnsupportedTypeDC::class.minRandom() }
             .isInstanceOf(RuntimeException::class.java)
-            .hasMessage("Could not generate random instance of class java.sql.SQLData")
+            .hasMessage("Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
     }
 
     @Test

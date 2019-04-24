@@ -6,6 +6,27 @@ import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
 
+object KMinRandom {
+    /**
+     * Supplies a value that KMinRandom will use to generate a value for the supplied [KClass]
+     * This value will be returned as the value for the supplied [KClass] whenever [minRandom] is called
+     *
+     * Note that KMinRandom is stateful. Supplied values from other tests could, based on the run order of the tests, be used in other tests
+     */
+    fun <T : Any> supplyValueForClass(clazz: KClass<T>, value: T) {
+        if (!clazz.isInstance(value)) throw RuntimeException()
+
+        classToMinRandom[clazz] = value
+    }
+
+    /**
+     * Used for internal tests
+     */
+    internal fun <T : Any> removeSupportForClass(clazz: KClass<T>) {
+        classToMinRandom.remove(clazz)
+    }
+}
+
 /**
  * Generates a minimal random instance of the supplied KClass
  */
@@ -53,7 +74,7 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T: Any> KClassifier.randomInstance(): T {
+private fun <T : Any> KClassifier.randomInstance(): T {
     return (classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()) as T
 }
 
@@ -65,7 +86,7 @@ private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
     val constructor = getConstructorWithTheLeastArguments()
 
     if (constructor == null) {
-        throw RuntimeException("Could not generate random instance of $this")
+        throw RuntimeException("Could not generate random instance of $this. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
     } else {
         constructor.parameters
             .filter { !it.isOptional && !it.type.isMarkedNullable }
