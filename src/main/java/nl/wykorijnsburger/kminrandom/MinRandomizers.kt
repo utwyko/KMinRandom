@@ -15,7 +15,7 @@ import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
 
-internal val classToMinRandom = mapOf(
+internal val classToMinRandom = mutableMapOf(
     // Numbers
     Double::class to Random.nextDouble(),
     Float::class to Random.nextFloat(),
