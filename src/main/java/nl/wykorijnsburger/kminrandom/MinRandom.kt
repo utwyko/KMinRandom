@@ -1,5 +1,9 @@
 package nl.wykorijnsburger.kminrandom
 
+import nl.wykorijnsburger.kminrandom.exception.NoConstructorException
+import nl.wykorijnsburger.kminrandom.exception.PrivateConstructorException
+import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
+import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
@@ -51,11 +55,11 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
         clazz.java.isEnum -> return clazz.randomEnum()
     }
 
-    clazz.checkForUnsupportedTypes()
+    clazz.checkForUnsupportedTypes(mutableSetOf())
 
-    val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw noConstructorException
+    val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw NoConstructorException()
 
-    if (constructor.visibility == KVisibility.PRIVATE) throw privateConstructorException
+    if (constructor.visibility == KVisibility.PRIVATE) throw PrivateConstructorException()
 
     val parameters = constructor.parameters
 
@@ -82,21 +86,22 @@ private fun <T : Any> KClassifier.randomInstance(): T {
     return (classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()) as T
 }
 
-private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
+private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
     if (objectInstance != null) return
-
     if (classToMinRandom.containsKey(this)) return
 
     val constructor = getConstructorWithTheLeastArguments()
 
-    if (constructor == null) {
-        throw RuntimeException("Could not generate random instance of $this. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
-    } else {
-        constructor.parameters
-            .filter { !it.isOptional && !it.type.isMarkedNullable }
-            .map { it.type.jvmErasure }
-            .forEach { it.checkForUnsupportedTypes() }
-    }
+    if (checkedTypes.contains(this)) throw SelfReferentialException()
+    if (constructor == null) throw UnsupportedClassException(this)
+
+    constructor.parameters
+        .filter { !it.isOptional && !it.type.isMarkedNullable }
+        .map { it.type.jvmErasure }
+        .forEach {
+            checkedTypes.add(this)
+            it.checkForUnsupportedTypes(checkedTypes)
+        }
 }
 
 private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction<T>? {
