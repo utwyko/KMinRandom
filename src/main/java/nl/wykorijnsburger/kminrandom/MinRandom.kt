@@ -1,5 +1,9 @@
 package nl.wykorijnsburger.kminrandom
 
+import nl.wykorijnsburger.kminrandom.exception.NoConstructorException
+import nl.wykorijnsburger.kminrandom.exception.PrivateConstructorException
+import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
+import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
 import kotlin.random.Random
 import kotlin.reflect.*
 import kotlin.reflect.full.primaryConstructor
@@ -49,9 +53,9 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 
     clazz.checkForUnsupportedTypes(mutableSetOf())
 
-    val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw noConstructorException
+    val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw NoConstructorException()
 
-    if (constructor.visibility == KVisibility.PRIVATE) throw privateConstructorException
+    if (constructor.visibility == KVisibility.PRIVATE) throw PrivateConstructorException()
 
     val parameters = constructor.parameters
 
@@ -84,8 +88,8 @@ private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSe
 
     val constructor = getConstructorWithTheLeastArguments()
 
-    if (checkedTypes.contains(this)) throw selfReferentialException
-    if (constructor == null) throw unsupportedClassException(this)
+    if (checkedTypes.contains(this)) throw SelfReferentialException()
+    if (constructor == null) throw UnsupportedClassException(this)
 
     constructor.parameters
         .filter { !it.isOptional && !it.type.isMarkedNullable }
