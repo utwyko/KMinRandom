@@ -85,7 +85,7 @@ private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSe
     val constructor = getConstructorWithTheLeastArguments()
 
     if (checkedTypes.contains(this)) throw selfReferentialException
-    if (constructor == null) throw RuntimeException("Could not generate random instance of $this. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
+    if (constructor == null) throw unsupportedClassException(this)
 
     constructor.parameters
         .filter { !it.isOptional && !it.type.isMarkedNullable }
