@@ -1,6 +1,6 @@
 package nl.wykorijnsburger.kminrandom
 
-import nl.wykorijnsburger.kminrandom.SelfReferentialTest.SelfReferentialThroughNestingDC.*
+import nl.wykorijnsburger.kminrandom.SelfReferentialTest.SelfReferentialThroughNestingDC.WrappingDC
 import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
