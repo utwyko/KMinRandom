@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="kminrandom_buildSrc_main" target="1.8" />
+      <module name="kminrandom_buildSrc_test" target="1.8" />
+      <module name="kminrandom_main" target="1.8" />
+      <module name="kminrandom_test" target="1.8" />
+      <module name="minimaltestobjects_main" target="1.8" />
+      <module name="minimaltestobjects_test" target="1.8" />
+      <module name="nl.wykorijnsburger.kminrandom_buildSrc_main" target="1.8" />
+      <module name="nl.wykorijnsburger.kminrandom_buildSrc_test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
