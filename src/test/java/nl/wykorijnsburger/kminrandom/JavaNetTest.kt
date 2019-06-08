@@ -8,8 +8,8 @@ import java.net.URL
 internal class JavaNetTest {
 
     data class JavaNetDC(
-            val url: URL,
-            val uri: URI
+        val url: URL,
+        val uri: URI
     )
 
     @Test

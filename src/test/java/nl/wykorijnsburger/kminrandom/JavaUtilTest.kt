@@ -2,7 +2,9 @@ package nl.wykorijnsburger.kminrandom
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.util.*
+import java.util.Date
+import java.util.Optional
+import java.util.UUID
 
 internal class JavaUtilTest {
 

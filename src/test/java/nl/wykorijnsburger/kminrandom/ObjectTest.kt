@@ -17,7 +17,6 @@ internal class ObjectTest {
         assertThat(randomObject.objectValue).isNotNull()
     }
 
-
     internal data class ObjectDC(
         val sampleObject: SampleObject
     )

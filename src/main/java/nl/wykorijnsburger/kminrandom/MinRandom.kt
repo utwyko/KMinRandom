@@ -1,7 +1,11 @@
 package nl.wykorijnsburger.kminrandom
 
 import kotlin.random.Random
-import kotlin.reflect.*
+import kotlin.reflect.KClass
+import kotlin.reflect.KClassifier
+import kotlin.reflect.KFunction
+import kotlin.reflect.KParameter
+import kotlin.reflect.KVisibility
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure

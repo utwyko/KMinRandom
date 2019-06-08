@@ -2,7 +2,6 @@ package nl.wykorijnsburger.kminrandom
 
 import kotlin.reflect.KClass
 
-
 /**
  * Generates a minimal random instance of the supplied KClass
  */

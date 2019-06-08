@@ -5,7 +5,6 @@ import org.junit.jupiter.api.Test
 import java.math.BigDecimal
 import java.math.BigInteger
 
-
 internal class JavaMathTest {
 
     data class JavaMathDC(

@@ -26,10 +26,12 @@ internal class ExampleTest {
     }
 }
 
-data class Car(val colour: String,
-               val model: String,
-               val speed: Int?,
-               val manufacturer: Manufacturer) {
+data class Car(
+    val colour: String,
+    val model: String,
+    val speed: Int?,
+    val manufacturer: Manufacturer
+) {
     fun isBlue() = colour == "blue"
 }
 
