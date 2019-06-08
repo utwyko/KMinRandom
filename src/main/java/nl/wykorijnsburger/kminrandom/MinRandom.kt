@@ -47,7 +47,7 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
         clazz.java.isEnum -> return clazz.randomEnum()
     }
 
-    clazz.checkForUnsupportedTypes()
+    clazz.checkForUnsupportedTypes(mutableSetOf())
 
     val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw noConstructorException
 
@@ -78,21 +78,22 @@ private fun <T : Any> KClassifier.randomInstance(): T {
     return (classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()) as T
 }
 
-private fun <T : Any> KClass<T>.checkForUnsupportedTypes() {
+private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
     if (objectInstance != null) return
-
     if (classToMinRandom.containsKey(this)) return
 
     val constructor = getConstructorWithTheLeastArguments()
 
-    if (constructor == null) {
-        throw RuntimeException("Could not generate random instance of $this. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
-    } else {
-        constructor.parameters
-            .filter { !it.isOptional && !it.type.isMarkedNullable }
-            .map { it.type.jvmErasure }
-            .forEach { it.checkForUnsupportedTypes() }
-    }
+    if (checkedTypes.contains(this)) throw selfReferentialException
+    if (constructor == null) throw RuntimeException("Could not generate random instance of $this. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
+
+    constructor.parameters
+        .filter { !it.isOptional && !it.type.isMarkedNullable }
+        .map { it.type.jvmErasure }
+        .forEach {
+            checkedTypes.add(this)
+            it.checkForUnsupportedTypes(checkedTypes)
+        }
 }
 
 private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction<T>? {
