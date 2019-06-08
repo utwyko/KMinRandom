@@ -4,6 +4,7 @@ plugins {
     signing
     kotlin("jvm") version Versions.kotlin
     id("com.github.ben-manes.versions") version Versions.benManesVersions
+    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradlePluginVersion
 }
 
 group = "nl.wykorijnsburger.kminrandom"
