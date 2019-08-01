@@ -1,4 +1,9 @@
 # Change Log
+## 1.0.0 (TBD)
+* Add experimental support for new syntax: `minRandom<DC>()` and `minRandomCached<DC>()`
+* Throw proper exception when generating self-referential classes (thanks @ZacSweers)
+* Extract exceptions to typed exceptions instead of generic `RuntimeException`s
+
 ## 0.0.10 (24 Apr 2019)
 * Add support for Kotlin `object`, including Sealed Classes that are implemented by `object`s.
 * Add support for providing your own random instances by supplying them to KMinRandom through `KMinRandom.supplyValueForClass()`.
