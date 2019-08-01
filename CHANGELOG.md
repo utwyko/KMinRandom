@@ -1,5 +1,5 @@
 # Change Log
-## 0.10.0 (24 Apr 2019)
+## 0.0.10 (24 Apr 2019)
 * Add support for Kotlin `object`, including Sealed Classes that are implemented by `object`s.
 * Add support for providing your own random instances by supplying them to KMinRandom through `KMinRandom.supplyValueForClass()`.
 
