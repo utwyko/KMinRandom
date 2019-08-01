@@ -13,6 +13,7 @@ import kotlin.reflect.KVisibility
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
+import kotlin.reflect.typeOf
 
 object KMinRandom {
     /**
@@ -39,6 +40,12 @@ object KMinRandom {
  * Generates a minimal random instance of the supplied KClass
  */
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
+
+@UseExperimental(ExperimentalStdlibApi::class)
+inline fun <reified T> minRandom(): T {
+    val clazz = typeOf<T>()
+    return generateMinRandom(clazz.jvmErasure) as T
+}
 
 /**
  * Generates a minimal random instance of the supplied KClass
