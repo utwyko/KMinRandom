@@ -13,8 +13,6 @@
           <option name="noReflect" value="true" />
           <option name="moduleName" value="buildSrc" />
           <option name="jvmTarget" value="1.8" />
-          <option name="addCompilerBuiltIns" value="true" />
-          <option name="loadBuiltInsFromDependencies" value="true" />
           <option name="languageVersion" value="1.3" />
           <option name="apiVersion" value="1.3" />
           <option name="pluginOptions">
@@ -45,51 +43,6 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-api-5.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" scope="PROVIDED">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-kotlin-dsl-extensions-5.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/groovy-all-1.0-2.5.4.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-jdk8-1.3.31.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-1.3.31.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-common-1.3.31.jar!/" />
         </CLASSES>
         <JAVADOC />
@@ -99,7 +52,29 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-jdk7-1.3.31.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-tooling-models-5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/src/kotlin-dsl-tooling-models" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/src/kotlin-dsl" />
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-1.3.31.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -117,17 +92,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-installation-beacon-5.5.jar!/" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-      </library>
-    </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-jdk8-1.3.31.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -136,14 +101,21 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-tooling-models-5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-kotlin-dsl-extensions-5.5.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/groovy-all-1.0-2.5.4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
     <orderEntry type="module-library">
       <library>
         <CLASSES>
@@ -252,7 +224,7 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-kotlin-dsl-extensions-5.5.jar!/" />
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/kotlin-stdlib-jdk7-1.3.31.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -261,26 +233,52 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-api-5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.31" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.3.31" level="project" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-5.5.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/src/kotlin-dsl" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31" level="project" />
+    <orderEntry type="module-library" scope="PROVIDED">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/caches/5.5/generated-gradle-jars/gradle-kotlin-dsl-extensions-5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-installation-beacon-5.5.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.3.31" level="project" />
     <orderEntry type="module-library">
       <library>
         <CLASSES>
           <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/lib/gradle-kotlin-dsl-tooling-models-5.5.jar!/" />
         </CLASSES>
         <JAVADOC />
-        <SOURCES>
-          <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-5.5-all/byeise1led9a3w3p149d02kfj/gradle-5.5/src/kotlin-dsl-tooling-models" />
-        </SOURCES>
+        <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-reflect:1.3.31" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.31" level="project" />
   </component>
 </module>
