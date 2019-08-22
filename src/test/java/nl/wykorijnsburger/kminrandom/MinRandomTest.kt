@@ -75,4 +75,9 @@ internal class MinRandomTest {
         assertThat(randomDC.unsupportedType).isNull()
         assertThat(randomDC.string).isNull()
     }
+
+    @Test
+    fun `Should generate unique values`() {
+        assertThat(String::class.minRandom()).isNotEqualTo(String::class.minRandom())
+    }
 }

@@ -18,55 +18,55 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
-internal val classToMinRandom = mutableMapOf(
+internal val classToMinRandom = mutableMapOf<KClass<*>, () -> Any>(
     // Numbers
-    Double::class to Random.nextDouble(),
-    Float::class to Random.nextFloat(),
-    Long::class to Random.nextLong(),
-    Int::class to Random.nextInt(),
-    Short::class to Random.nextInt().toShort(),
-    Byte::class to Random.nextInt().toByte(),
+    Double::class to { Random.nextDouble() },
+    Float::class to { Random.nextFloat() },
+    Long::class to { Random.nextLong() },
+    Int::class to { Random.nextInt() },
+    Short::class to { Random.nextInt().toShort() },
+    Byte::class to { Random.nextInt().toByte() },
 
-    Char::class to randomString().first(),
-    String::class to randomString(),
-    Boolean::class to Random.nextBoolean(),
+    Char::class to { randomString().first() },
+    String::class to { randomString() },
+    Boolean::class to { Random.nextBoolean() },
 
     // Arrays
-    DoubleArray::class to doubleArrayOf(),
-    FloatArray::class to floatArrayOf(),
-    LongArray::class to longArrayOf(),
-    IntArray::class to intArrayOf(),
-    ShortArray::class to shortArrayOf(),
-    ByteArray::class to byteArrayOf(),
-    CharArray::class to charArrayOf(),
-    BooleanArray::class to booleanArrayOf(),
+    DoubleArray::class to { doubleArrayOf() },
+    FloatArray::class to { floatArrayOf() },
+    LongArray::class to { longArrayOf() },
+    IntArray::class to { intArrayOf() },
+    ShortArray::class to { shortArrayOf() },
+    ByteArray::class to { byteArrayOf() },
+    CharArray::class to { charArrayOf() },
+    BooleanArray::class to { booleanArrayOf() },
 
     // Collections
-    List::class to emptyList<Any>(),
-    Set::class to emptySet<Any>(),
-    Iterable::class to emptyList<Any>(),
-    Sequence::class to emptySequence<Any>(),
-    Map::class to emptyMap<Any, Any>(),
-    Queue::class to LinkedList<Any>(),
+    List::class to { emptyList<Any>() },
+    Set::class to { emptySet<Any>() },
+    Iterable::class to { emptyList<Any>() },
+    Sequence::class to { emptySequence<Any>() },
+    Map::class to { emptyMap<Any, Any>() },
+    Queue::class to { LinkedList<Any>() },
 
     // Java.Time
-    Instant::class to Instant.now(),
-    LocalDate::class to LocalDate.now(),
-    LocalTime::class to LocalTime.now(),
-    ZonedDateTime::class to ZonedDateTime.now(),
+    Instant::class to { Instant.now() },
+    LocalDate::class to { LocalDate.now() },
+    LocalTime::class to { LocalTime.now() },
+    ZonedDateTime::class to { ZonedDateTime.now() },
 
     // Java.Math
-    BigDecimal::class to BigDecimal.valueOf(Random.nextDouble()),
-    BigInteger::class to BigInteger(5, random),
+    BigDecimal::class to { BigDecimal.valueOf(Random.nextDouble()) },
+    BigInteger::class to { BigInteger(5, random) },
 
     // Java.Util
-    Date::class to Date.from(Instant.now()),
-    Optional::class to Optional.empty<Any>(),
-    UUID::class to UUID.randomUUID(),
+    Date::class to { Date.from(Instant.now()) },
+    Optional::class to { Optional.empty<Any>() },
+    UUID::class to { UUID.randomUUID() },
 
     // Java.Net
-    URI::class to randomURI(),
-    URL::class to randomURI().toURL()
+    URI::class to { randomURI() },
+    URL::class to { randomURI().toURL() }
 )
 
 internal fun <T : Any> KClass<T>.randomEnum(): T {

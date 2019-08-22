@@ -25,7 +25,7 @@ object KMinRandom {
     fun <T : Any> supplyValueForClass(clazz: KClass<T>, value: T) {
         if (!clazz.isInstance(value)) throw RuntimeException()
 
-        classToMinRandom[clazz] = value
+        classToMinRandom[clazz] = { value }
     }
 
     /**
@@ -90,7 +90,7 @@ fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 
 @Suppress("UNCHECKED_CAST")
 private fun <T : Any> KClassifier.randomInstance(): T {
-    return (classToMinRandom[this] ?: this.starProjectedType.jvmErasure.minRandom()) as T
+    return (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
 }
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
