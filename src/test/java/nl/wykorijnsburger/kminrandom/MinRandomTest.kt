@@ -78,6 +78,7 @@ internal class MinRandomTest {
 
     @Test
     fun `Should generate unique values`() {
+        KMinRandom.removeSupportForClass(String::class)
         assertThat(String::class.minRandom()).isNotEqualTo(String::class.minRandom())
     }
 }

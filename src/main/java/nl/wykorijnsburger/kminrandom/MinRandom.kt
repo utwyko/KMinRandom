@@ -32,7 +32,12 @@ object KMinRandom {
      * Used for internal tests
      */
     internal fun <T : Any> removeSupportForClass(clazz: KClass<T>) {
-        classToMinRandom.remove(clazz)
+        val standardGenerateFunction = standardClassToMinRandom[clazz]
+        if (standardGenerateFunction != null) {
+            classToMinRandom.replace(clazz, standardGenerateFunction)
+        } else {
+            classToMinRandom.remove(clazz)
+        }
     }
 }
 

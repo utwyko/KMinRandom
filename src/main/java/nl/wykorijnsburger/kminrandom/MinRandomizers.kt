@@ -18,7 +18,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
-internal val classToMinRandom = mutableMapOf<KClass<*>, () -> Any>(
+internal val standardClassToMinRandom = mapOf<KClass<*>, () -> Any>(
     // Numbers
     Double::class to { Random.nextDouble() },
     Float::class to { Random.nextFloat() },
@@ -68,6 +68,8 @@ internal val classToMinRandom = mutableMapOf<KClass<*>, () -> Any>(
     URI::class to { randomURI() },
     URL::class to { randomURI().toURL() }
 )
+
+internal val classToMinRandom = standardClassToMinRandom.toMutableMap()
 
 internal fun <T : Any> KClass<T>.randomEnum(): T {
     val enumConstants = java.enumConstants
