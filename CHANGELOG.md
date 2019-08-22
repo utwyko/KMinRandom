@@ -1,8 +1,9 @@
 # Change Log
-## 1.0.0 (TBD)
+## 1.0.0 (22 Aug 2019)
 * Add experimental support for new syntax: `minRandom<DC>()` and `minRandomCached<DC>()`
 * Throw proper exception when generating self-referential classes (thanks @ZacSweers)
 * Extract exceptions to typed exceptions instead of generic `RuntimeException`s
+* Make sure that values are actually randomized on each use of `.minRandom()`
 
 ## 0.0.10 (24 Apr 2019)
 * Add support for Kotlin `object`, including Sealed Classes that are implemented by `object`s.
@@ -23,7 +24,7 @@
 * Fix direct random generation of Enum
 
 ## 0.0.5 (9 April 2018)
-* Improve randomString implementation1
+* Improve randomString implementation
 
 ## 0.0.4 (26 February 2018)
 * Support for generating Java class members
