@@ -1,4 +1,7 @@
 # Change Log
+## 1.0.1 (25 Aug 2019)
+* Fix issue where self referential exception was incorrectly thrown
+
 ## 1.0.0 (22 Aug 2019)
 * Add experimental support for new syntax: `minRandom<DC>()` and `minRandomCached<DC>()`
 * Throw proper exception when generating self-referential classes (thanks @ZacSweers)
