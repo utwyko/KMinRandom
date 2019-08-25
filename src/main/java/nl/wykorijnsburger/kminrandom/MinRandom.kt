@@ -112,7 +112,8 @@ private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSe
         .map { it.type.jvmErasure }
         .forEach {
             checkedTypes.add(this)
-            it.checkForUnsupportedTypes(checkedTypes)
+            val checkedTypesCopy = checkedTypes.toMutableSet()
+            it.checkForUnsupportedTypes(checkedTypesCopy)
         }
 }
 
