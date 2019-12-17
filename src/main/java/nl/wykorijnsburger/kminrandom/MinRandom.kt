@@ -46,6 +46,10 @@ object KMinRandom {
  */
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
 
+/**
+ * Experimental syntax using the reified type added in Kotlin 1.3.40.
+ * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)] for more details.
+ */
 @UseExperimental(ExperimentalStdlibApi::class)
 inline fun <reified T> minRandom(): T {
     val clazz = typeOf<T>()
