@@ -13,7 +13,7 @@ internal class JavaClassTest {
     fun `Should be able to generate random instance of Java class`() {
         val randomDC = JavaClassDC::class.minRandom()
 
-        assertThat(randomDC.sampleJavaClass).isNotNull()
+        assertThat(randomDC.sampleJavaClass).isNotNull
     }
 
     @Test

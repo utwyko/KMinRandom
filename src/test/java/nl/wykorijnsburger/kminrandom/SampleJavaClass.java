@@ -1,8 +1,9 @@
 package nl.wykorijnsburger.kminrandom;
 
+@SuppressWarnings("unused")
 public class SampleJavaClass {
 
-    private String string1;
+    private final String string1;
     private String string2 = null;
 
     public SampleJavaClass(String string1, String string2) {

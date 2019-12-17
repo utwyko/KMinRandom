@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 @Suppress("UsePropertyAccessSyntax")
 @ExperimentalStdlibApi
-internal class ExperimentalSyntaxTest() {
+internal class ExperimentalSyntaxTest {
 
     @Test
     fun `Should generate minRandom with experimental syntax`() {

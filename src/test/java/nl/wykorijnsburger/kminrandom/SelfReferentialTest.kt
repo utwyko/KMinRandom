@@ -16,6 +16,7 @@ internal class SelfReferentialTest {
             .isInstanceOf(SelfReferentialException::class.java)
     }
 
+    @Suppress("unused")
     data class SelfReferentialThroughNestingDC(val wrappingDC: WrappingDC) {
         data class WrappingDC(val selfReferentialThroughNestingDC: SelfReferentialThroughNestingDC)
     }

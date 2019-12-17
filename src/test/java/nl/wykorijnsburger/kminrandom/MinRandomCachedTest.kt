@@ -13,9 +13,8 @@ internal class MinRandomCachedTest {
     @Test
     fun `Should cache random instance when using the minRandomCached method`() {
         val newMinRandom = SampleDC::class.minRandomCached()
-        (0..10)
-            .forEach { val minRandomCached = SampleDC::class.minRandomCached()
-                assertThat(minRandomCached).isEqualTo(newMinRandom)
-            }
+        repeat(10) { val minRandomCached = SampleDC::class.minRandomCached()
+            assertThat(minRandomCached).isEqualTo(newMinRandom)
+        }
     }
 }
