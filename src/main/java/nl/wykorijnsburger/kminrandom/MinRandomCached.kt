@@ -9,7 +9,11 @@ import kotlin.reflect.typeOf
  */
 fun <T : Any> KClass<T>.minRandomCached() = generateMinRandomCached(this)
 
-@UseExperimental(ExperimentalStdlibApi::class)
+/**
+ * Experimental syntax using the reified type added in Kotlin 1.3.40.
+ * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
+ */
+@OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T> minRandomCached(): T {
     val clazz = typeOf<T>()
     return generateMinRandomCached(clazz.jvmErasure) as T
