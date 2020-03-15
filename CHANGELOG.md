@@ -1,4 +1,8 @@
 # Change Log
+## 1.0.2 (15 Mar 2020)
+* Use `@OptIn` flag instead of deprecated `@UseExperimental` flag for reified syntax.
+* Update Kotlin from `1.3.50` to `1.3.70`.
+
 ## 1.0.1 (25 Aug 2019)
 * Fix issue where self referential exception was incorrectly thrown
 
