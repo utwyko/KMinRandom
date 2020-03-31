@@ -1,6 +1,7 @@
 name: Check master branch
 
 on:
+  pull_request:
   push:
     branches:
       - master
