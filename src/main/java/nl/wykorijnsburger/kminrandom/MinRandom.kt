@@ -42,18 +42,23 @@ object KMinRandom {
 }
 
 /**
- * Generates a minimal random instance of the supplied KClass
+ * Generates a minimal random instance of the supplied KClass.
+ *
+ * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
  */
 fun <T : Any> KClass<T>.minRandom() = generateMinRandom(this)
 
 /**
+ * Generates a minimal random instance of the supplied KClass.
+ *
+ * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
+ *
  * Experimental syntax using the reified type added in Kotlin 1.3.40.
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 @OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T> minRandom(): T {
-    val clazz = typeOf<T>()
-    return generateMinRandom(clazz.jvmErasure) as T
+    return typeOf<T>().jvmErasure.minRandom() as T
 }
 
 /**

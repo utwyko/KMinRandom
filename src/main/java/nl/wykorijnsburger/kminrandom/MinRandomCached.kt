@@ -5,18 +5,25 @@ import kotlin.reflect.jvm.jvmErasure
 import kotlin.reflect.typeOf
 
 /**
- * Generates a minimal random instance of the supplied KClass
+ * Generates a minimal random instance of the supplied KClass and stores it in memory.
+ * Subsequent calls to [minRandomCached] with the same type will return an identical result.
+ *
+ * Since already generated values can be reused, there is a performance gain from using this method compared to [minRandom].
  */
 fun <T : Any> KClass<T>.minRandomCached() = generateMinRandomCached(this)
 
 /**
+ * Generates a minimal random instance of the supplied KClass and stores it in memory.
+ * Subsequent calls to [minRandomCached] with the same type will return an identical result.
+ *
+ * Since already generated values can be reused, there is a performance gain from using this method compared to [minRandom].
+ *
  * Experimental syntax using the reified type added in Kotlin 1.3.40.
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 @OptIn(ExperimentalStdlibApi::class)
 inline fun <reified T> minRandomCached(): T {
-    val clazz = typeOf<T>()
-    return generateMinRandomCached(clazz.jvmErasure) as T
+    return typeOf<T>().jvmErasure.minRandom() as T
 }
 
 /**
