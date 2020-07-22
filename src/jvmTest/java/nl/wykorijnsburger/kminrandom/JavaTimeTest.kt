@@ -1,7 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import org.junit.Test
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime

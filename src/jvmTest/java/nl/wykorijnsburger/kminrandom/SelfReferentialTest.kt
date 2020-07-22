@@ -4,7 +4,7 @@ import nl.wykorijnsburger.kminrandom.SelfReferentialTest.SelfReferentialThroughN
 import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
-import org.junit.jupiter.api.Test
+import org.junit.Test
 
 internal class SelfReferentialTest {
     @Suppress("SelfReferenceConstructorParameter")

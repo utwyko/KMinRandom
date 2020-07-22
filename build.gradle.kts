@@ -44,18 +44,11 @@ kotlin {
         val jvmTest by getting {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
+                implementation(kotlin("test-junit"))
+                implementation(kotlin("test"))
                 implementation(Libs.assertJCore)
-                implementation(Libs.junitJupiterApi)
-                runtimeOnly(Libs.junitJupiterEngine)
             }
         }
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
     }
 }
 
@@ -63,17 +56,17 @@ tasks.withType<Wrapper> {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-//task<Jar>("sourcesJar") {
+// task<Jar>("sourcesJar") {
 //    from(sourceSets.main.get().allJava)
 //    archiveClassifier.set("sources")
-//}
+// }
 //
-//task<Jar>("javadocJar") {
+// task<Jar>("javadocJar") {
 //    from(tasks.javadoc)
 //    archiveClassifier.set("javadoc")
-//}
+// }
 //
-//publishing {
+// publishing {
 //    publications {
 //        create<MavenPublication>("mavenJava") {
 //            artifactId = "kminrandom"
@@ -115,8 +108,8 @@ tasks.withType<Wrapper> {
 //            }
 //        }
 //    }
-//}
+// }
 //
-//signing {
+// signing {
 //    sign(publishing.publications["mavenJava"])
-//}
+// }

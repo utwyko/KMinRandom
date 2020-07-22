@@ -6,10 +6,6 @@ object Versions {
     const val ktlintGradlePluginVersion = "9.2.1"
 }
 
-object Plugins {
-
-}
-
 object Libs {
     const val junitJupiterApi = "org.junit.jupiter:junit-jupiter-api:${Versions.junitJupiter}"
     const val junitJupiterEngine = "org.junit.jupiter:junit-jupiter-engine:${Versions.junitJupiter}"
