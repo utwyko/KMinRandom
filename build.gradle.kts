@@ -33,21 +33,26 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
                 implementation(kotlin("reflect"))
+            }
+        }
+
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation(kotlin("test"))
+                implementation(Libs.assertJCore)
             }
         }
 
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
             }
         }
 
         val jvmTest by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("test-junit"))
                 implementation(kotlin("test"))
                 implementation(Libs.assertJCore)
