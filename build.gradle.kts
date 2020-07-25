@@ -34,6 +34,15 @@ kotlin {
             }
         }
 
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+                implementation(kotlin("test-junit"))
+                implementation(kotlin("test"))
+                implementation(Libs.assertJCore)
+            }
+        }
+
         val jvmMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
