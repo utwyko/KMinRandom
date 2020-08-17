@@ -8,7 +8,7 @@ internal fun randomString(): String {
     val source = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
 
     return random.ints(Random.nextInt(1, 50).toLong(), 0, source.length)
-            .asSequence()
-            .map(source::get)
-            .joinToString("")
+        .asSequence()
+        .map(source::get)
+        .joinToString("")
 }
