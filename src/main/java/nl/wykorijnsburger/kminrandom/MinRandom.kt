@@ -131,7 +131,7 @@ private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction
 
     if (primaryConstructor != null) return primaryConstructor
 
-    return constructors.minBy { it.parameters.size }
+    return constructors.minByOrNull { it.parameters.size }
 }
 
 private fun <T : Any> sealedClassMinRandom(clazz: KClass<T>) =
