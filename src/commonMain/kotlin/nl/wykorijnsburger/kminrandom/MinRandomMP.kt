@@ -15,14 +15,14 @@ import kotlin.reflect.full.primaryConstructor
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 @OptIn(ExperimentalStdlibApi::class)
-inline fun <reified T> minRandomMP(): T {
+public inline fun <reified T> minRandomMP(): T {
     val type = typeOf<T>()
 
    return minRandomMP(type) as T
 }
 
 @OptIn(ExperimentalStdlibApi::class)
-fun <T> minRandomMP(type: KType): T {
+public fun <T> minRandomMP(type: KType): T {
     val minRandom = typeToMinRandom[type]
     if (minRandom != null ) return minRandom() as T
 

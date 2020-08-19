@@ -9,6 +9,10 @@ plugins {
 group = "nl.wykorijnsburger.kminrandom"
 version = "1.0.2"
 
+kotlin {
+    explicitApi()
+}
+
 allprojects {
     repositories {
         mavenCentral()
@@ -29,14 +33,12 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-common"))
                 implementation(kotlin("reflect"))
             }
         }
 
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("test-junit"))
                 implementation(kotlin("test"))
                 implementation(Libs.assertJCore)
@@ -45,14 +47,12 @@ kotlin {
 
         val jvmMain by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("reflect"))
             }
         }
 
         val jvmTest by getting {
             dependencies {
-                implementation(kotlin("stdlib-jdk8"))
                 implementation(kotlin("test-junit"))
                 implementation(kotlin("test"))
                 implementation(Libs.assertJCore)

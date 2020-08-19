@@ -10,7 +10,7 @@ import kotlin.reflect.typeOf
  *
  * Since already generated values can be reused, there is a performance gain from using this method compared to [minRandom].
  */
-fun <T : Any> KClass<T>.minRandomCached() = generateMinRandomCached(this)
+public fun <T : Any> KClass<T>.minRandomCached(): T = generateMinRandomCached(this)
 
 /**
  * Generates a minimal random instance of the supplied KClass and stores it in memory.
@@ -22,14 +22,14 @@ fun <T : Any> KClass<T>.minRandomCached() = generateMinRandomCached(this)
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 @OptIn(ExperimentalStdlibApi::class)
-inline fun <reified T> minRandomCached(): T {
+public inline fun <reified T> minRandomCached(): T {
     return typeOf<T>().jvmErasure.minRandom() as T
 }
 
 /**
  * Generates a minimal random instance of the supplied KClass
  */
-fun <T : Any> generateMinRandomCached(clazz: KClass<T>): T {
+public fun <T : Any> generateMinRandomCached(clazz: KClass<T>): T {
     val qualifiedClassName = clazz.qualifiedName
 
     @Suppress("UNCHECKED_CAST")

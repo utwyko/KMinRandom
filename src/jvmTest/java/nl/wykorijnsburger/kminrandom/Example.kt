@@ -7,12 +7,14 @@ internal class ExampleTest {
 
     @Test
     fun `Without KMinRandom - isBlue() should return true when colour is blue`() {
-        val car = Car(colour = "blue",
-                model = "MODEL",
-                speed = null,
-                manufacturer = Manufacturer(
-                        name = "MANUFACTURER_NAME"
-                ))
+        val car = Car(
+            colour = "blue",
+            model = "MODEL",
+            speed = null,
+            manufacturer = Manufacturer(
+                name = "MANUFACTURER_NAME"
+            )
+        )
 
         assertThat(car.isBlue()).isTrue()
     }
@@ -20,7 +22,7 @@ internal class ExampleTest {
     @Test
     fun `With KMinRandom - isBlue() should return true when colour is blue`() {
         val car = Car::class.minRandom()
-                .copy(colour = "blue")
+            .copy(colour = "blue")
 
         assertThat(car.isBlue()).isTrue()
     }
