@@ -1,4 +1,8 @@
 # Change Log
+## 1.0.3 (1 Jan 2021)
+* Fix reified `minRandomCached` method not using cache (thanks @smuldr).
+* Update Kotlin from `1.3.70` to `1.4.21`.
+
 ## 1.0.2 (15 Mar 2020)
 * Use `@OptIn` flag instead of deprecated `@UseExperimental` flag for reified syntax.
 * Update Kotlin from `1.3.50` to `1.3.70`.
