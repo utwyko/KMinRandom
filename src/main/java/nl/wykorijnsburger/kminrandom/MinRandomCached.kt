@@ -22,9 +22,7 @@ public fun <T : Any> KClass<T>.minRandomCached(): T = generateMinRandomCached(th
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 @OptIn(ExperimentalStdlibApi::class)
-public inline fun <reified T> minRandomCached(): T {
-    return typeOf<T>().jvmErasure.minRandom() as T
-}
+public inline fun <reified T> minRandomCached(): T = typeOf<T>().jvmErasure.minRandomCached() as T
 
 /**
  * Generates a minimal random instance of the supplied KClass
