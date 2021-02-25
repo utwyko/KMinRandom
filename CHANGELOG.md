@@ -1,4 +1,8 @@
 # Change Log
+## 1.0.4 (25 Feb 2021)
+* Properly target JVM 8+ compat (thanks @smuldr).
+* Update Kotlin from `1.4.21` to `1.4.31`.
+
 ## 1.0.3 (1 Jan 2021)
 * Fix reified `minRandomCached` method not using cache (thanks @smuldr).
 * Update Kotlin from `1.3.70` to `1.4.21`.

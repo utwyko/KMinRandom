@@ -64,14 +64,14 @@ class ExampleTest {
 
 Gradle:
 ```groovy
-testImplementation 'nl.wykorijnsburger.kminrandom:kminrandom:1.0.3'
+testImplementation 'nl.wykorijnsburger.kminrandom:kminrandom:1.0.4'
 ```
 or Maven:
 ```xml
 <dependency>
   <groupId>nl.wykorijnsburger.kminrandom</groupId>
   <artifactId>kminrandom</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <scope>test</scope>
 </dependency>
 ```
