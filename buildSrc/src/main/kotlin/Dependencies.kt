@@ -3,7 +3,7 @@ object Versions {
     const val assertJ = "3.19.0"
     const val kotlin = "1.4.31"
     const val benManesVersions = "0.36.0"
-    const val ktlintGradlePluginVersion = "9.4.1"
+    const val ktlintGradlePluginVersion = "10.0.0"
 }
 
 object Plugins {
