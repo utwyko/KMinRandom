@@ -1,3 +1,5 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
     `java-library`
     `maven-publish`
@@ -24,6 +26,18 @@ dependencies {
     testImplementation(Libs.junitJupiterApi)
     testRuntimeOnly(Libs.junitJupiterEngine)
     testImplementation(Libs.assertJCore)
+}
+
+// Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.
+tasks.withType<JavaCompile> {
+    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
+    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+}
+
+tasks.withType<KotlinCompile>() {
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 tasks.withType<Test> {
