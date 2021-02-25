@@ -1,7 +1,7 @@
 object Versions {
     const val junitJupiter = "5.7.1"
     const val assertJ = "3.19.0"
-    const val kotlin = "1.4.30"
+    const val kotlin = "1.4.31"
     const val benManesVersions = "0.36.0"
     const val ktlintGradlePluginVersion = "9.4.1"
 }
