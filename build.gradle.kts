@@ -1,10 +1,10 @@
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 
 plugins {
     `java-library`
     `maven-publish`
     signing
-    kotlin("jvm") version Versions.kotlin
+    kotlin("multiplatform") version Versions.kotlin
     id("com.github.ben-manes.versions") version Versions.benManesVersions
     id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradlePluginVersion
 }
@@ -12,39 +12,46 @@ plugins {
 group = "nl.wykorijnsburger.kminrandom"
 version = "1.0.4"
 
-kotlin {
-    explicitApi()
-}
-
 repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation(kotlin("stdlib-jdk8"))
-    implementation(kotlin("reflect"))
-    testImplementation(Libs.junitJupiterApi)
-    testRuntimeOnly(Libs.junitJupiterEngine)
-    testImplementation(Libs.assertJCore)
+kotlin {
+    explicitApi()
+
+    jvm {
+        withJava() // support for tests
+
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
+
+    sourceSets {
+        val jvmMain by getting {
+            dependencies {
+                implementation(kotlin("stdlib-jdk8"))
+                implementation(kotlin("reflect"))
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(Libs.junitJupiterApi)
+                runtimeOnly(Libs.junitJupiterEngine)
+                implementation(Libs.assertJCore)
+            }
+        }
+    }
 }
 
 // Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.
 tasks.withType<JavaCompile> {
     sourceCompatibility = JavaVersion.VERSION_1_8.toString()
     targetCompatibility = JavaVersion.VERSION_1_8.toString()
-}
-
-tasks.withType<KotlinCompile>() {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
-    }
-}
-
-tasks.withType<Test> {
-    useJUnitPlatform()
-    testLogging {
-        events("passed", "skipped", "failed")
-    }
 }
 
 tasks.withType<Wrapper> {
