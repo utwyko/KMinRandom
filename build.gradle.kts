@@ -4,9 +4,9 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    kotlin("jvm") version Versions.kotlin
-    id("com.github.ben-manes.versions") version Versions.benManesVersions
-    id("org.jlleitschuh.gradle.ktlint") version Versions.ktlintGradlePluginVersion
+    kotlin("jvm") version "1.4.31"
+    id("com.github.ben-manes.versions") version "0.36.0"
+    id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
 }
 
 group = "nl.wykorijnsburger.kminrandom"
@@ -23,9 +23,9 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
-    testImplementation(Libs.junitJupiterApi)
-    testRuntimeOnly(Libs.junitJupiterEngine)
-    testImplementation(Libs.assertJCore)
+    testImplementation(libs.junitJupiter.api)
+    testRuntimeOnly(libs.junitJupiter.engine)
+    testImplementation(libs.assertjCore)
 }
 
 // Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.
