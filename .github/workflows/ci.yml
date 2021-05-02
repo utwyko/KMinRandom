@@ -19,7 +19,7 @@ jobs:
           java-version: 14
 
       - name: Setup build cache
-        uses: actions/cache@v1
+        uses: actions/cache@v2.1.5
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle.kts') }}
