@@ -32,6 +32,11 @@ kotlin {
     }
 
     sourceSets {
+        val commonMain by getting {
+            dependencies {
+                implementation(kotlin("reflect"))
+            }
+        }
         val jvmMain by getting {
             dependencies {
                 implementation(kotlin("stdlib-jdk8"))
