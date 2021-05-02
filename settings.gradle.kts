@@ -8,7 +8,7 @@ enableFeaturePreview("VERSION_CATALOGS")
 pluginManagement {
     plugins {
         kotlin("jvm") version "1.4.31"
-        id("com.github.ben-manes.versions") version "0.36.0"
-        id("org.jllweitschuh.gradle.ktlint") version "10.0.0"
+        id("com.github.ben-manes.versions") version "0.38.0"
+        id("org.jlleitschuh.gradle.ktlint") version "10.0.0"
     }
 }
