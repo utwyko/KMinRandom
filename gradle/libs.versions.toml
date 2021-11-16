@@ -1,6 +1,6 @@
 [versions]
 assertj = "3.19.0"
-junitJupiter = "5.7.1"
+junitJupiter = "5.8.1"
 
 [libraries]
 assertjCore = { module = "org.assertj:assertj-core", version.ref = "assertj" }
