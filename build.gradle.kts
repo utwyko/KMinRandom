@@ -4,9 +4,9 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    kotlin("jvm")
-    id("com.github.ben-manes.versions")
-    id("org.jlleitschuh.gradle.ktlint")
+    alias(libs.plugins.kotlin.gradlePluginJvm)
+    alias(libs.plugins.gradleVersionsPlugin)
+    alias(libs.plugins.gradleKtLintPlugin)
 }
 
 group = "nl.wykorijnsburger.kminrandom"
