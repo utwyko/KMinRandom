@@ -1,5 +1,5 @@
 [versions]
-assertj = "3.19.0"
+assertj = "3.21.0"
 junitJupiter = "5.8.1"
 
 [libraries]
