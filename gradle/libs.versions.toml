@@ -1,6 +1,6 @@
 [versions]
 assertj = "3.21.0"
-junitJupiter = "5.8.1"
+junitJupiter = "5.9.3"
 kotlin = "1.6.0"
 
 [libraries]
