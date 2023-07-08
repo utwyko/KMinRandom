@@ -3,11 +3,10 @@ package nl.wykorijnsburger.kminrandom
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-@ExperimentalStdlibApi
-internal class ExperimentalSyntaxTest {
+internal class ReifiedSyntaxTest {
 
     @Test
-    fun `Should generate minRandom with experimental syntax`() {
+    fun `Should generate minRandom with reified syntax`() {
         val randomDC = minRandom<BasicDC>()
 
         assertThat(randomDC.string).isNotNull()
@@ -15,7 +14,7 @@ internal class ExperimentalSyntaxTest {
     }
 
     @Test
-    fun `Should generate minRandomCached with experimental syntax`() {
+    fun `Should generate minRandomCached with reified syntax`() {
         val randomDC = minRandomCached<BasicDC>()
 
         assertThat(randomDC.string).isNotNull()

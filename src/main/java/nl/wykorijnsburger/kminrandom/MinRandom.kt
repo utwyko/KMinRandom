@@ -53,7 +53,7 @@ public fun <T : Any> KClass<T>.minRandom(): T = generateMinRandom(this)
  *
  * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
  *
- * Experimental syntax using the reified type added in Kotlin 1.3.40.
+ * Syntax using the reified type added in Kotlin 1.3.40.
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
  */
 public inline fun <reified T> minRandom(): T {
