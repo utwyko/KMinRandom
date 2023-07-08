@@ -39,14 +39,14 @@ tasks.withType<KotlinCompile> {
     }
 }
 
-tasks.withType<Test> {
+tasks.test {
     useJUnitPlatform()
     testLogging {
         events("passed", "skipped", "failed")
     }
 }
 
-tasks.withType<Wrapper> {
+tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
