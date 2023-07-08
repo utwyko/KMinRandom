@@ -1,14 +1,15 @@
 package nl.wykorijnsburger.kminrandom
 
+import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.isEqualTo
+import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
 import java.sql.SQLData
 import java.sql.SQLInput
 import java.sql.SQLOutput
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 
 internal class SupplyTest {
 
@@ -30,7 +31,8 @@ internal class SupplyTest {
 
     @Test
     fun `Should generate a random instance of an unsupported class by supplying a value for unsupported class`() {
-        assertFailsWith<RuntimeException> { SQLData::class.minRandom() }
+        assertFailure { SQLData::class.minRandom() }
+            .isInstanceOf<RuntimeException>()
 
         KMinRandom.supplyValueForClass(SQLData::class, sqlData)
 
@@ -41,7 +43,8 @@ internal class SupplyTest {
 
     @Test
     fun `Should generate DCs with unsupported values by supplying a value for unsupported class`() {
-        assertFailsWith<RuntimeException> { SQLDataDC::class.minRandom() }
+        assertFailure { SQLDataDC::class.minRandom() }
+            .isInstanceOf<RuntimeException>()
 
         KMinRandom.supplyValueForClass(SQLData::class, sqlData)
 

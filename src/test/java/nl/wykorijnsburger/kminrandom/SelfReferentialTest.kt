@@ -1,11 +1,12 @@
 package nl.wykorijnsburger.kminrandom
 
+import assertk.assertFailure
 import assertk.assertThat
+import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
 import nl.wykorijnsburger.kminrandom.SelfReferentialTest.SelfReferentialThroughNestingDC.WrappingDC
 import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 
 internal class SelfReferentialTest {
     @Suppress("SelfReferenceConstructorParameter")
@@ -13,7 +14,8 @@ internal class SelfReferentialTest {
 
     @Test
     fun `Should throw error when DC references itself`() {
-        assertFailsWith<SelfReferentialException> { SelfReferentialDC::class.minRandomCached() }
+        assertFailure { SelfReferentialDC::class.minRandomCached() }
+            .isInstanceOf<SelfReferentialException>()
     }
 
     @Suppress("unused")
@@ -23,7 +25,8 @@ internal class SelfReferentialTest {
 
     @Test
     fun `Should throw error when DC references itself through nesting`() {
-        assertFailsWith<SelfReferentialException> { WrappingDC::class.minRandomCached() }
+        assertFailure { WrappingDC::class.minRandomCached() }
+            .isInstanceOf<SelfReferentialException>()
     }
 
     data class MultiplePairsDC(

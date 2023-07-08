@@ -1,12 +1,14 @@
 package nl.wykorijnsburger.kminrandom
 
+import assertk.assertFailure
 import assertk.assertThat
+import assertk.assertions.hasMessage
+import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotEqualTo
 import assertk.assertions.isNotNull
 import assertk.assertions.isNull
-import kotlin.test.Test
 import java.sql.SQLData
-import kotlin.test.assertFailsWith
+import kotlin.test.Test
 
 internal class MinRandomTest {
 
@@ -54,9 +56,9 @@ internal class MinRandomTest {
 
     @Test
     fun `Should throw RuntimeException when class contains unsupported type`() {
-        assertFailsWith<RuntimeException>(
-            message = "Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by using KMinRandom.supplyValueForClass()."
-        ) { UnsupportedTypeDC::class.minRandom() }
+        assertFailure { UnsupportedTypeDC::class.minRandom() }
+            .isInstanceOf<RuntimeException>()
+            .hasMessage("Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
     }
 
     @Test

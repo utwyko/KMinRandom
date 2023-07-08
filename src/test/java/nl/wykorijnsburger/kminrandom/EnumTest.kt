@@ -1,9 +1,11 @@
 package nl.wykorijnsburger.kminrandom
 
+import assertk.assertFailure
 import assertk.assertThat
 import assertk.assertions.contains
+import assertk.assertions.hasMessage
+import assertk.assertions.isInstanceOf
 import kotlin.test.Test
-import kotlin.test.assertFailsWith
 
 internal class EnumTest {
 
@@ -31,8 +33,8 @@ internal class EnumTest {
     fun `Should generate random enum instance`() {
         assertThat(SampleEnum.values()).contains(SampleEnum::class.minRandom())
         assertThat(SampleJavaEnum.values()).contains(SampleJavaEnum::class.minRandom())
-        assertFailsWith<RuntimeException>(
-            message = "Cannot generate random value for empty enum EmptyEnum"
-        ) { EmptyEnum::class.minRandom() }
+        assertFailure { EmptyEnum::class.minRandom() }
+            .isInstanceOf<RuntimeException>()
+            .hasMessage("Cannot generate random value for empty enum EmptyEnum")
     }
 }
