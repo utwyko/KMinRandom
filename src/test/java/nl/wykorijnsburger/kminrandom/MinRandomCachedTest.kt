@@ -1,7 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+import kotlin.test.Test
 
 internal class MinRandomCachedTest {
 

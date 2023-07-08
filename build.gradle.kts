@@ -22,8 +22,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    testImplementation(libs.junitJupiter.api)
-    testRuntimeOnly(libs.junitJupiter.engine)
+    testImplementation(kotlin("test"))
     testImplementation(libs.assertjCore)
 }
 

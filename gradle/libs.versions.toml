@@ -6,9 +6,6 @@ kotlin = "1.9.0"
 [libraries]
 assertjCore = { module = "org.assertj:assertj-core", version.ref = "assertj" }
 
-junitJupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junitJupiter" }
-junitJupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junitJupiter" }
-
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.47.0" }
