@@ -3,7 +3,6 @@ package nl.wykorijnsburger.kminrandom
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-@Suppress("UsePropertyAccessSyntax")
 @ExperimentalStdlibApi
 internal class ExperimentalSyntaxTest {
 
