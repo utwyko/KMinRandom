@@ -1,6 +1,5 @@
 package nl.wykorijnsburger.kminrandom
 
-import randomString
 import java.net.URI
 
 internal fun randomURI() = URI(validSchemes.random(), randomString(), "/${randomString()}", null)
