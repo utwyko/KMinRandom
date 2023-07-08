@@ -21,7 +21,6 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-jdk8"))
     implementation(kotlin("reflect"))
     testImplementation(libs.junitJupiter.api)
     testRuntimeOnly(libs.junitJupiter.engine)
