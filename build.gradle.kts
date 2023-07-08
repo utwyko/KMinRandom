@@ -4,7 +4,7 @@ plugins {
     `java-library`
     `maven-publish`
     signing
-    alias(libs.plugins.kotlin.gradlePluginJvm)
+    alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.gradleVersionsPlugin)
     alias(libs.plugins.gradleKtLintPlugin)
 }
@@ -14,6 +14,27 @@ version = "1.0.4"
 
 kotlin {
     explicitApi()
+
+    jvm {
+        compilations.all {
+            kotlinOptions.jvmTarget = "1.8"
+        }
+        withJava()
+        testRuns["test"].executionTask.configure {
+            useJUnitPlatform()
+        }
+    }
+
+    sourceSets {
+        val commonMain by getting
+        val commonTest by getting {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+        }
+        val jvmMain by getting
+        val jvmTest by getting
+    }
 }
 
 repositories {
@@ -47,11 +68,6 @@ tasks.test {
 
 tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
-}
-
-task<Jar>("sourcesJar") {
-    from(sourceSets.main.get().allJava)
-    archiveClassifier.set("sources")
 }
 
 task<Jar>("javadocJar") {
