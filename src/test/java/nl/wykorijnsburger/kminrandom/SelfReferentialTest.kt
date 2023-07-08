@@ -31,6 +31,7 @@ internal class SelfReferentialTest {
         val pair1: Pair<Any, Any>,
         val pair2: Pair<Any, Any>
     )
+
     @Test
     fun `Should not throw error when multiple properties are of the same type`() {
         assertThat(MultiplePairsDC::class.minRandom()).isNotNull

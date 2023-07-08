@@ -1,1 +1,1 @@
-rootProject.name = "kminrandom"
+rootProject.name = "KMinRandom"

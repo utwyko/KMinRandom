@@ -65,7 +65,6 @@ public inline fun <reified T> minRandom(): T {
  * Generates a minimal random instance of the supplied KClass
  */
 public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
-
     val objectInstance = clazz.objectInstance
 
     // Supported types can be directly returned without inspecting constructor
