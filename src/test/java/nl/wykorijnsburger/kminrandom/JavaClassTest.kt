@@ -1,6 +1,8 @@
 package nl.wykorijnsburger.kminrandom
 
-import org.assertj.core.api.Assertions.assertThat
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isNull
 import kotlin.test.Test
 
 internal class JavaClassTest {
@@ -13,7 +15,7 @@ internal class JavaClassTest {
     fun `Should be able to generate random instance of Java class`() {
         val randomDC = JavaClassDC::class.minRandom()
 
-        assertThat(randomDC.sampleJavaClass).isNotNull
+        assertThat(randomDC.sampleJavaClass).isNotNull()
     }
 
     @Test

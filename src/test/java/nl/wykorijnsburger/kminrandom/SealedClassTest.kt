@@ -1,6 +1,8 @@
 package nl.wykorijnsburger.kminrandom
 
-import org.assertj.core.api.Assertions.assertThat
+import assertk.assertThat
+import assertk.assertions.isNotNull
+import assertk.assertions.isTrue
 import kotlin.test.Test
 
 class SealedClassTest {
@@ -9,7 +11,10 @@ class SealedClassTest {
     fun `Should generate a random instance of a randomly selected sealed class`() {
         val randomSealedClass = SampleSealedClass::class.minRandom()
         assertThat(randomSealedClass.sharedValue).isNotNull()
-        assertThat(randomSealedClass).isInstanceOfAny(SealedClassImpl1::class.java, SealedClassImpl2::class.java)
+        assertThat(
+            randomSealedClass is SealedClassImpl1 ||
+                randomSealedClass is SealedClassImpl2
+        ).isTrue()
     }
 }
 

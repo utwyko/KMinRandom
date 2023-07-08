@@ -1,6 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
-import org.assertj.core.api.Assertions.assertThat
+import assertk.assertThat
+import assertk.assertions.isTrue
 import kotlin.test.Test
 
 internal class ExampleTest {

@@ -23,7 +23,7 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test"))
-    testImplementation(libs.assertjCore)
+    testImplementation(libs.assertk)
 }
 
 // Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.

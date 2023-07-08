@@ -1,6 +1,7 @@
 package nl.wykorijnsburger.kminrandom
 
-import org.assertj.core.api.Assertions.assertThat
+import assertk.assertThat
+import assertk.assertions.isNotNull
 import kotlin.test.Test
 import java.math.BigDecimal
 import java.math.BigInteger
