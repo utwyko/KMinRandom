@@ -1,4 +1,4 @@
-package nl.wykorijnsburger.kminrandom.exception
+package exception
 
 import kotlin.reflect.KClass
 

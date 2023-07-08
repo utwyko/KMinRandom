@@ -1,9 +1,9 @@
 package nl.wykorijnsburger.kminrandom
 
-import nl.wykorijnsburger.kminrandom.exception.NoConstructorException
-import nl.wykorijnsburger.kminrandom.exception.PrivateConstructorException
-import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
-import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
+import exception.NoConstructorException
+import exception.PrivateConstructorException
+import exception.SelfReferentialException
+import exception.UnsupportedClassException
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier

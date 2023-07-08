@@ -5,7 +5,7 @@ import assertk.assertThat
 import assertk.assertions.isInstanceOf
 import assertk.assertions.isNotNull
 import nl.wykorijnsburger.kminrandom.SelfReferentialTest.SelfReferentialThroughNestingDC.WrappingDC
-import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
+import exception.SelfReferentialException
 import kotlin.test.Test
 
 internal class SelfReferentialTest {
