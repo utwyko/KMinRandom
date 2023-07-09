@@ -63,15 +63,17 @@ public inline fun <reified T> minRandom(): T {
 /**
  * Generates a minimal random instance of the supplied KClass
  */
+@Suppress("UNCHECKED_CAST")
 public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     val objectInstance = clazz.objectInstance
 
+    val randomClassEnum by lazy { clazz.randomEnum() }
     // Supported types can be directly returned without inspecting constructor
     when {
         objectInstance != null -> return objectInstance
         clazz.sealedSubclasses.isNotEmpty() -> return sealedClassMinRandom(clazz)
         classToMinRandom.containsKey(clazz) -> return clazz.randomInstance() as T
-        clazz.java.isEnum -> return clazz.randomEnum()
+        randomClassEnum != null -> return randomClassEnum!!
     }
 
     clazz.checkForUnsupportedTypes(mutableSetOf())
@@ -88,9 +90,10 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
         .forEach {
             val type = it.type
 
+            val randomParameterEnum by lazy { type.randomEnum() }
             val randomParameter = when {
                 type.isMarkedNullable -> null
-                type.jvmErasure.java.isEnum -> type.randomEnum()
+                randomParameterEnum != null -> randomParameterEnum
                 else -> type.classifier?.randomInstance()
             }
 
@@ -100,9 +103,8 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
     return constructor.callBy(parameterMap)
 }
 
-@Suppress("UNCHECKED_CAST")
-private fun <T : Any> KClassifier.randomInstance(): T {
-    return (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
+private fun KClassifier.randomInstance(): Any {
+    return (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom())
 }
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {

@@ -13,7 +13,7 @@ class SealedClassTest {
         assertThat(randomSealedClass.sharedValue).isNotNull()
         assertThat(
             randomSealedClass is SealedClassImpl1 ||
-                randomSealedClass is SealedClassImpl2
+                randomSealedClass is SealedClassImpl2,
         ).isTrue()
     }
 }
@@ -24,10 +24,10 @@ sealed class SampleSealedClass {
 
 data class SealedClassImpl1(
     override val sharedValue: String,
-    val nonSharedValue: String
+    val nonSharedValue: String,
 ) : SampleSealedClass()
 
 data class SealedClassImpl2(
     override val sharedValue: String,
-    val nonSharedValue: String
+    val nonSharedValue: String,
 ) : SampleSealedClass()

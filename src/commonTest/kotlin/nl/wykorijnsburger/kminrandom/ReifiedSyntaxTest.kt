@@ -24,6 +24,6 @@ internal class ReifiedSyntaxTest {
 
     data class BasicDC(
         val string: String,
-        val int: Int
+        val int: Int,
     )
 }

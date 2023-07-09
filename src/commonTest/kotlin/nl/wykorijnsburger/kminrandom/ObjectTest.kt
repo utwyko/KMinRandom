@@ -16,11 +16,11 @@ internal class ObjectTest {
         val randomObject = SampleObject::class.minRandom()
 
         assertThat(randomObject).isEqualTo(SampleObject)
-        assertThat(randomObject.objectValue).isNotNull()
+        assertThat(SampleObject.objectValue).isNotNull()
     }
 
     internal data class ObjectDC(
-        val sampleObject: SampleObject
+        val sampleObject: SampleObject,
     )
 
     @Test

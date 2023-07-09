@@ -2,15 +2,15 @@ package nl.wykorijnsburger.kminrandom
 
 import assertk.assertThat
 import assertk.assertions.isNotNull
-import kotlin.test.Test
 import java.math.BigDecimal
 import java.math.BigInteger
+import kotlin.test.Test
 
 internal class JavaMathTest {
 
     data class JavaMathDC(
         val bigInteger: BigInteger,
-        val bigDecimal: BigDecimal
+        val bigDecimal: BigDecimal,
     )
 
     @Test

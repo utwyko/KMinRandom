@@ -21,7 +21,7 @@ internal class MinRandomTest {
         val byte: Byte,
         val char: Char,
         val boolean: Boolean,
-        val string: String
+        val string: String,
     )
 
     @Test
@@ -40,7 +40,7 @@ internal class MinRandomTest {
 
     data class DCWithNestedDC(
         val normalField: String,
-        val nestedDC: NestedDC
+        val nestedDC: NestedDC,
     )
 
     data class NestedDC(val normalField: String)
@@ -58,7 +58,10 @@ internal class MinRandomTest {
     fun `Should throw RuntimeException when class contains unsupported type`() {
         assertFailure { UnsupportedTypeDC::class.minRandom() }
             .isInstanceOf<RuntimeException>()
-            .hasMessage("Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by using KMinRandom.supplyValueForClass().")
+            .hasMessage(
+                "Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by " +
+                    "using KMinRandom.supplyValueForClass().",
+            )
     }
 
     @Test
@@ -70,7 +73,7 @@ internal class MinRandomTest {
 
     data class NullableTypesDC(
         val unsupportedType: SQLData?,
-        val string: String?
+        val string: String?,
     )
 
     @Test

@@ -2,15 +2,15 @@ package nl.wykorijnsburger.kminrandom
 
 import assertk.assertThat
 import assertk.assertions.isNotNull
-import kotlin.test.Test
 import java.net.URI
 import java.net.URL
+import kotlin.test.Test
 
 internal class JavaNetTest {
 
     data class JavaNetDC(
         val url: URL,
-        val uri: URI
+        val uri: URI,
     )
 
     @Test

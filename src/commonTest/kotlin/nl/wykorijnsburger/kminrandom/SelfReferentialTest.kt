@@ -31,7 +31,7 @@ internal class SelfReferentialTest {
 
     data class MultiplePairsDC(
         val pair1: Pair<Any, Any>,
-        val pair2: Pair<Any, Any>
+        val pair2: Pair<Any, Any>,
     )
 
     @Test

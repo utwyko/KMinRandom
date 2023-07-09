@@ -8,7 +8,7 @@ internal class MinRandomCachedTest {
 
     data class SampleDC(
         val value1: String,
-        val value2: String
+        val value2: String,
     )
 
     @Test

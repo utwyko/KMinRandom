@@ -3,17 +3,17 @@ package nl.wykorijnsburger.kminrandom
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isNotNull
-import kotlin.test.Test
 import java.util.Date
 import java.util.Optional
 import java.util.UUID
+import kotlin.test.Test
 
 internal class JavaUtilTest {
 
     data class JavaUtilDC(
         val optional: Optional<String>,
         val uuid: UUID,
-        val date: Date
+        val date: Date,
     )
 
     @Test

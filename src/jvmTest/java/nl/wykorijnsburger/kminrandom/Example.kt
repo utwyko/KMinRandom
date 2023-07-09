@@ -13,8 +13,8 @@ internal class ExampleTest {
             model = "MODEL",
             speed = null,
             manufacturer = Manufacturer(
-                name = "MANUFACTURER_NAME"
-            )
+                name = "MANUFACTURER_NAME",
+            ),
         )
 
         assertThat(car.isBlue()).isTrue()
@@ -33,7 +33,7 @@ data class Car(
     val colour: String,
     val model: String,
     val speed: Int?,
-    val manufacturer: Manufacturer
+    val manufacturer: Manufacturer,
 ) {
     fun isBlue() = colour == "blue"
 }
