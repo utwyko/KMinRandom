@@ -8,7 +8,7 @@ import kotlin.test.Test
 internal class JavaClassTest {
 
     data class JavaClassDC(
-        val sampleJavaClass: SampleJavaClass
+        val sampleJavaClass: SampleJavaClass,
     )
 
     @Test

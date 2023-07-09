@@ -11,12 +11,12 @@ internal class EnumTest {
 
     data class EnumDC(
         val sampleEnum: SampleEnum,
-        val sampleJavaEnum: SampleJavaEnum
+        val sampleJavaEnum: SampleJavaEnum,
     )
 
     enum class SampleEnum {
         VALUE_1,
-        VALUE_2
+        VALUE_2,
     }
 
     enum class EmptyEnum

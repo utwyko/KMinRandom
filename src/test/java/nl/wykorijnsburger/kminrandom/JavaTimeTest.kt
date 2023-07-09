@@ -13,7 +13,7 @@ internal class JavaTimeTest {
         val localDate: LocalDate,
         val localTime: LocalTime,
         val instant: Instant,
-        val zonedDateTime: ZonedDateTime
+        val zonedDateTime: ZonedDateTime,
     )
 
     @Test

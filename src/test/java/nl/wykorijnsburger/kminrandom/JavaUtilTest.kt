@@ -13,7 +13,7 @@ internal class JavaUtilTest {
     data class JavaUtilDC(
         val optional: Optional<String>,
         val uuid: UUID,
-        val date: Date
+        val date: Date,
     )
 
     @Test

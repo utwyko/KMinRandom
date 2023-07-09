@@ -20,7 +20,7 @@ internal class ObjectTest {
     }
 
     internal data class ObjectDC(
-        val sampleObject: SampleObject
+        val sampleObject: SampleObject,
     )
 
     @Test

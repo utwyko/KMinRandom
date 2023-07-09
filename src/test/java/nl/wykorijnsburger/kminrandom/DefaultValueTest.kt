@@ -10,7 +10,7 @@ internal class DefaultValueTest {
     data class DefaultValuesDC(
         val stringWithDefaultValue: String = "DEFAULT_VALUE",
         val intWithDefaultValue: Int = 10,
-        val stringWithoutDefaultValue: String
+        val stringWithoutDefaultValue: String,
     )
 
     @Test

@@ -10,7 +10,7 @@ internal class JavaMathTest {
 
     data class JavaMathDC(
         val bigInteger: BigInteger,
-        val bigDecimal: BigDecimal
+        val bigDecimal: BigDecimal,
     )
 
     @Test

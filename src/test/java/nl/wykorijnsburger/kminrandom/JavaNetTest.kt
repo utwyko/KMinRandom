@@ -10,7 +10,7 @@ internal class JavaNetTest {
 
     data class JavaNetDC(
         val url: URL,
-        val uri: URI
+        val uri: URI,
     )
 
     @Test

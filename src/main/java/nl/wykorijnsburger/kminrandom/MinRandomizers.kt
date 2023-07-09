@@ -66,7 +66,7 @@ internal val standardClassToMinRandom = mapOf<KClass<*>, () -> Any>(
 
     // Java.Net
     URI::class to { randomURI() },
-    URL::class to { randomURI().toURL() }
+    URL::class to { randomURI().toURL() },
 )
 
 internal val classToMinRandom = standardClassToMinRandom.toMutableMap()
