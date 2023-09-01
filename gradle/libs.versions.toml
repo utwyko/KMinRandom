@@ -4,4 +4,4 @@ assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.26.1" }
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.0" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.47.0" }
-gradleKtLintPlugin = { id = "org.jlleitschuh.gradle.ktlint", version = "11.5.0" }
+gradleKtLintPlugin = { id = "org.jlleitschuh.gradle.ktlint", version = "11.5.1" }
