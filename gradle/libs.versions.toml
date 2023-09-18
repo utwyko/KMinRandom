@@ -1,5 +1,5 @@
 [libraries]
-assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.26.1" }
+assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.27.0" }
 
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.10" }
