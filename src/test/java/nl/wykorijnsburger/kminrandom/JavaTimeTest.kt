@@ -2,11 +2,11 @@ package nl.wykorijnsburger.kminrandom
 
 import assertk.assertThat
 import assertk.assertions.isNotNull
-import kotlin.test.Test
 import java.time.Instant
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.ZonedDateTime
+import kotlin.test.Test
 
 internal class JavaTimeTest {
     data class TimeDC(

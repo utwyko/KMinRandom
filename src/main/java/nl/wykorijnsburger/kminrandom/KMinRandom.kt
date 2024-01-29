@@ -3,6 +3,7 @@ package nl.wykorijnsburger.kminrandom
 import nl.wykorijnsburger.kminrandom.exception.NoConstructorException
 import nl.wykorijnsburger.kminrandom.exception.PrivateConstructorException
 import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
+import nl.wykorijnsburger.kminrandom.exception.SuppliedValueException
 import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
 import kotlin.random.Random
 import kotlin.reflect.KClass
@@ -20,10 +21,11 @@ public object KMinRandom {
      * Supplies a value that KMinRandom will use to generate a value for the supplied [KClass]
      * This value will be returned as the value for the supplied [KClass] whenever [minRandom] is called
      *
-     * Note that KMinRandom is stateful. Supplied values from other tests could, based on the run order of the tests, be used in other tests
+     * Note that KMinRandom is stateful. Supplied values from other tests could be used in other tests
+     * based on the run order of the tests.
      */
     public fun <T : Any> supplyValueForClass(clazz: KClass<T>, value: T) {
-        if (!clazz.isInstance(value)) throw RuntimeException()
+        if (!clazz.isInstance(value)) throw SuppliedValueException(clazz)
 
         classToMinRandom[clazz] = { value }
     }
@@ -54,7 +56,8 @@ public fun <T : Any> KClass<T>.minRandom(): T = generateMinRandom(this)
  * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
  *
  * Syntax using the reified type added in Kotlin 1.3.40.
- * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/) for more details.
+ * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/)
+ * for more details.
  */
 public inline fun <reified T> minRandom(): T {
     return typeOf<T>().jvmErasure.minRandom() as T

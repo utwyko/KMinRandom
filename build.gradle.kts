@@ -5,8 +5,8 @@ plugins {
     `maven-publish`
     signing
     alias(libs.plugins.kotlin.gradlePluginJvm)
+    alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionsPlugin)
-    alias(libs.plugins.gradleKtLintPlugin)
 }
 
 group = "nl.wykorijnsburger.kminrandom"
@@ -21,6 +21,8 @@ repositories {
 }
 
 dependencies {
+    detektPlugins(libs.detekt.formatting)
+
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test"))
     testImplementation(libs.assertk)
@@ -105,4 +107,8 @@ publishing {
 
 signing {
     sign(publishing.publications["mavenJava"])
+}
+
+detekt {
+    buildUponDefaultConfig = true
 }

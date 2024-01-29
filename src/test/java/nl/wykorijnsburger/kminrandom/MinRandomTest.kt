@@ -59,8 +59,8 @@ internal class MinRandomTest {
         assertFailure { UnsupportedTypeDC::class.minRandom() }
             .isInstanceOf<RuntimeException>()
             .hasMessage(
-                "Could not generate random instance of class java.sql.SQLData. You can supply your own instance of this class by " +
-                    "using KMinRandom.supplyValueForClass().",
+                "Could not generate random instance of class java.sql.SQLData. You can supply your " +
+                    "own instance of this class by using KMinRandom.supplyValueForClass().",
             )
     }
 

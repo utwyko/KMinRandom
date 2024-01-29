@@ -11,10 +11,5 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
-[*.{kt,kts}]
-# noinspection EditorConfigKeyCorrectness
-# As it's a custom property: https://github.com/pinterest/ktlint#custom-editorconfig-properties
-# This is a workaround for https://github.com/pinterest/ktlint/issues/527
-ktlint_disabled_rules=import-ordering # IDE first: https://github.com/pinterest/ktlint/issues/527
 ij_kotlin_allow_trailing_comma=true
 ij_kotlin_allow_trailing_comma_on_call_site = true
