@@ -18,6 +18,7 @@ import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
 
+@Suppress("MagicNumber")
 internal val standardClassToMinRandom = mapOf<KClass<*>, () -> Any>(
     // Numbers
     Double::class to { Random.nextDouble() },
@@ -75,7 +76,7 @@ internal fun <T : Any> KClass<T>.randomEnum(): T {
     val enumConstants = java.enumConstants
 
     return if (enumConstants == null || enumConstants.isEmpty()) {
-        throw RuntimeException("Cannot generate random value for empty enum ${this.simpleName}")
+        error("Cannot generate random value for empty enum ${this.simpleName}")
     } else {
         enumConstants[Random.nextInt(enumConstants.size)]
     }

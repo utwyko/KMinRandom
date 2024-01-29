@@ -3,10 +3,8 @@ package nl.wykorijnsburger.kminrandom
 import assertk.assertThat
 import assertk.assertions.isEmpty
 import assertk.assertions.isNotNull
+import java.util.*
 import kotlin.test.Test
-import java.util.Date
-import java.util.Optional
-import java.util.UUID
 
 internal class JavaUtilTest {
 

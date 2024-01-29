@@ -2,9 +2,9 @@ package nl.wykorijnsburger.kminrandom
 
 import assertk.assertThat
 import assertk.assertions.isNotNull
-import kotlin.test.Test
 import java.math.BigDecimal
 import java.math.BigInteger
+import kotlin.test.Test
 
 internal class JavaMathTest {
 
