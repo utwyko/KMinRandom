@@ -6,6 +6,6 @@ assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.28.0" }
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
 
 [plugins]
-kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.22" }
+kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.23" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.51.0" }
