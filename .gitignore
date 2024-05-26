@@ -43,3 +43,5 @@ gradle-app.setting
 
 # User-specific stuff
 .idea
+
+.kotlin/
