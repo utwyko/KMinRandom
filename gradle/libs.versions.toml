@@ -9,4 +9,4 @@ detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", 
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
-gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.52.0" }
+gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.53.0" }
