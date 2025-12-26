@@ -35,8 +35,8 @@ tasks.withType<JavaCompile> {
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
     }
 }
 
@@ -51,12 +51,12 @@ tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-task<Jar>("sourcesJar") {
+tasks.register<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
     archiveClassifier.set("sources")
 }
 
-task<Jar>("javadocJar") {
+tasks.register<Jar>("javadocJar") {
     from(tasks.javadoc)
     archiveClassifier.set("javadoc")
 }
