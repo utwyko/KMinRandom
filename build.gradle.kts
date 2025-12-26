@@ -111,4 +111,5 @@ signing {
 
 detekt {
     buildUponDefaultConfig = true
+    jvmTarget = "17"
 }
