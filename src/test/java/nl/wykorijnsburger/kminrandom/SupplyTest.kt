@@ -12,13 +12,10 @@ import java.sql.SQLOutput
 import kotlin.test.Test
 
 internal class SupplyTest {
-
     private val sqlData = object : SQLData {
         override fun readSQL(stream: SQLInput?, typeName: String?) = Unit
 
-        override fun getSQLTypeName(): String {
-            return "SQL_TYPE_NAME"
-        }
+        override fun getSQLTypeName(): String = "SQL_TYPE_NAME"
 
         override fun writeSQL(stream: SQLOutput?) = Unit
     }

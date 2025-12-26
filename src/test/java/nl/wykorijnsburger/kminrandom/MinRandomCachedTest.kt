@@ -5,11 +5,7 @@ import assertk.assertions.isEqualTo
 import kotlin.test.Test
 
 internal class MinRandomCachedTest {
-
-    data class SampleDC(
-        val value1: String,
-        val value2: String,
-    )
+    data class SampleDC(val value1: String, val value2: String)
 
     @Test
     fun `Should cache random instance when using the minRandomCached method`() {

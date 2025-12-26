@@ -5,7 +5,6 @@ import assertk.assertions.isNotNull
 import kotlin.test.Test
 
 internal class ReifiedSyntaxTest {
-
     @Test
     fun `Should generate minRandom with reified syntax`() {
         val randomDC = minRandom<BasicDC>()
@@ -22,8 +21,5 @@ internal class ReifiedSyntaxTest {
         assertThat(randomDC.int).isNotNull()
     }
 
-    data class BasicDC(
-        val string: String,
-        val int: Int,
-    )
+    data class BasicDC(val string: String, val int: Int)
 }

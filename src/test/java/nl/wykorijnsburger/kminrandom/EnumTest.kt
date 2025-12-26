@@ -8,11 +8,7 @@ import assertk.assertions.isInstanceOf
 import kotlin.test.Test
 
 internal class EnumTest {
-
-    data class EnumDC(
-        val sampleEnum: SampleEnum,
-        val sampleJavaEnum: SampleJavaEnum,
-    )
+    data class EnumDC(val sampleEnum: SampleEnum, val sampleJavaEnum: SampleJavaEnum)
 
     enum class SampleEnum {
         VALUE_1,

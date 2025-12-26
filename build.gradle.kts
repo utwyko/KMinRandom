@@ -1,3 +1,4 @@
+import dev.detekt.gradle.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -21,22 +22,22 @@ repositories {
 }
 
 dependencies {
-    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.detekt.ktlint)
 
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test"))
     testImplementation(libs.assertk)
 }
 
-// Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.
+// Ensure "org.gradle.jvm.version" is set to "17" in Gradle metadata.
 tasks.withType<JavaCompile> {
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 
 tasks.withType<KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    compilerOptions {
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 
@@ -51,12 +52,12 @@ tasks.wrapper {
     distributionType = Wrapper.DistributionType.ALL
 }
 
-task<Jar>("sourcesJar") {
+tasks.register<Jar>("sourcesJar") {
     from(sourceSets.main.get().allJava)
     archiveClassifier.set("sources")
 }
 
-task<Jar>("javadocJar") {
+tasks.register<Jar>("javadocJar") {
     from(tasks.javadoc)
     archiveClassifier.set("javadoc")
 }
@@ -111,4 +112,8 @@ signing {
 
 detekt {
     buildUponDefaultConfig = true
+}
+
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = "17"
 }
