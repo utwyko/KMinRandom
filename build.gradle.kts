@@ -22,7 +22,7 @@ repositories {
 }
 
 dependencies {
-    detektPlugins(libs.detekt.formatting)
+    detektPlugins(libs.detekt.ktlint)
 
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test"))
