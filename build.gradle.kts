@@ -1,3 +1,4 @@
+import io.gitlab.arturbosch.detekt.Detekt
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -28,15 +29,15 @@ dependencies {
     testImplementation(libs.assertk)
 }
 
-// Ensure "org.gradle.jvm.version" is set to "8" in Gradle metadata.
+// Ensure "org.gradle.jvm.version" is set to "17" in Gradle metadata.
 tasks.withType<JavaCompile> {
-    sourceCompatibility = JavaVersion.VERSION_1_8.toString()
-    targetCompatibility = JavaVersion.VERSION_1_8.toString()
+    sourceCompatibility = JavaVersion.VERSION_17.toString()
+    targetCompatibility = JavaVersion.VERSION_17.toString()
 }
 
 tasks.withType<KotlinCompile> {
     compilerOptions {
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_1_8)
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
     }
 }
 
@@ -111,5 +112,8 @@ signing {
 
 detekt {
     buildUponDefaultConfig = true
+}
+
+tasks.withType<Detekt>().configureEach {
     jvmTarget = "17"
 }
