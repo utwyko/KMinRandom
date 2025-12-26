@@ -75,5 +75,4 @@ internal fun <T : Any> KClass<T>.randomEnum(): T {
     }
 }
 
-internal fun KType.randomEnum(): Any =
-    this.jvmErasure.randomEnum()
+internal fun KType.randomEnum(): Any = this.jvmErasure.randomEnum()
