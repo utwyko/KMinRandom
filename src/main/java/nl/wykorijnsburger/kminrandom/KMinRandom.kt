@@ -102,7 +102,9 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T : Any> KClassifier.randomInstance(): T = (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
+private fun <T : Any> KClassifier.randomInstance(): T =
+    (classToMinRandom[this]?.invoke()
+        ?: this.starProjectedType.jvmErasure.minRandom()) as T
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
     if (objectInstance != null) return
