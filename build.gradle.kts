@@ -112,6 +112,7 @@ signing {
 
 detekt {
     buildUponDefaultConfig = true
+    config.setFrom(files("$projectDir/.detekt.yml"))
 }
 
 tasks.withType<Detekt>().configureEach {
