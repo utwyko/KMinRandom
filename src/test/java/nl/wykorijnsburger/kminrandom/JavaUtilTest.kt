@@ -7,12 +7,7 @@ import java.util.*
 import kotlin.test.Test
 
 internal class JavaUtilTest {
-
-    data class JavaUtilDC(
-        val optional: Optional<String>,
-        val uuid: UUID,
-        val date: Date,
-    )
+    data class JavaUtilDC(val optional: Optional<String>, val uuid: UUID, val date: Date)
 
     @Test
     fun `Should generate random values for Java Util types`() {

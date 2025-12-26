@@ -59,9 +59,8 @@ public fun <T : Any> KClass<T>.minRandom(): T = generateMinRandom(this)
  * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/)
  * for more details.
  */
-public inline fun <reified T> minRandom(): T {
-    return typeOf<T>().jvmErasure.minRandom() as T
-}
+public inline fun <reified T> minRandom(): T =
+    typeOf<T>().jvmErasure.minRandom() as T
 
 /**
  * Generates a minimal random instance of the supplied KClass
@@ -104,9 +103,8 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 }
 
 @Suppress("UNCHECKED_CAST")
-private fun <T : Any> KClassifier.randomInstance(): T {
-    return (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
-}
+private fun <T : Any> KClassifier.randomInstance(): T =
+    (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
 
 private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
     if (objectInstance != null) return

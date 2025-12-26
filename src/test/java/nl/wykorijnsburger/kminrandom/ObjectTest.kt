@@ -6,9 +6,8 @@ import assertk.assertions.isNotNull
 import kotlin.test.Test
 
 internal class ObjectTest {
-
     internal object SampleObject {
-        const val objectValue = "OBJECT_VALUE"
+        const val OBJECT_VALUE = "OBJECT_VALUE"
     }
 
     @Test
@@ -16,12 +15,10 @@ internal class ObjectTest {
         val randomObject = SampleObject::class.minRandom()
 
         assertThat(randomObject).isEqualTo(SampleObject)
-        assertThat(randomObject.objectValue).isNotNull()
+        assertThat(randomObject.OBJECT_VALUE).isNotNull()
     }
 
-    internal data class ObjectDC(
-        val sampleObject: SampleObject,
-    )
+    internal data class ObjectDC(val sampleObject: SampleObject)
 
     @Test
     fun `Should generate random instance of DC with object value`() {
@@ -39,4 +36,5 @@ internal class ObjectTest {
 }
 
 internal sealed class SealedClass
+
 internal object SampleObjectImplementingSealedClass : SealedClass()

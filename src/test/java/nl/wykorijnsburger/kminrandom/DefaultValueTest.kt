@@ -6,7 +6,6 @@ import assertk.assertions.isNotNull
 import kotlin.test.Test
 
 internal class DefaultValueTest {
-
     data class DefaultValuesDC(
         val stringWithDefaultValue: String = "DEFAULT_VALUE",
         val intWithDefaultValue: Int = 10,

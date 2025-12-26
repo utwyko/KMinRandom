@@ -6,7 +6,6 @@ import assertk.assertions.isTrue
 import kotlin.test.Test
 
 class SealedClassTest {
-
     @Test
     fun `Should generate a random instance of a randomly selected sealed class`() {
         val randomSealedClass = SampleSealedClass::class.minRandom()
@@ -22,12 +21,6 @@ sealed class SampleSealedClass {
     abstract val sharedValue: String
 }
 
-data class SealedClassImpl1(
-    override val sharedValue: String,
-    val nonSharedValue: String,
-) : SampleSealedClass()
+data class SealedClassImpl1(override val sharedValue: String, val nonSharedValue: String) : SampleSealedClass()
 
-data class SealedClassImpl2(
-    override val sharedValue: String,
-    val nonSharedValue: String,
-) : SampleSealedClass()
+data class SealedClassImpl2(override val sharedValue: String, val nonSharedValue: String) : SampleSealedClass()
