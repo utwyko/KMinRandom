@@ -11,7 +11,6 @@ import java.sql.SQLData
 import kotlin.test.Test
 
 internal class MinRandomTest {
-
     data class BasicTypesDC(
         val double: Double,
         val float: Float,
@@ -38,10 +37,7 @@ internal class MinRandomTest {
         assertThat(randomDC.string).isNotNull()
     }
 
-    data class DCWithNestedDC(
-        val normalField: String,
-        val nestedDC: NestedDC,
-    )
+    data class DCWithNestedDC(val normalField: String, val nestedDC: NestedDC)
 
     data class NestedDC(val normalField: String)
 
@@ -71,10 +67,7 @@ internal class MinRandomTest {
         assertThat(randomInt).isNotNull()
     }
 
-    data class NullableTypesDC(
-        val unsupportedType: SQLData?,
-        val string: String?,
-    )
+    data class NullableTypesDC(val unsupportedType: SQLData?, val string: String?)
 
     @Test
     fun `Should generate null values for unsupported types if they are nullable`() {

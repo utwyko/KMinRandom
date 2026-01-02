@@ -29,10 +29,7 @@ internal class SelfReferentialTest {
             .isInstanceOf<SelfReferentialException>()
     }
 
-    data class MultiplePairsDC(
-        val pair1: Pair<Any, Any>,
-        val pair2: Pair<Any, Any>,
-    )
+    data class MultiplePairsDC(val pair1: Pair<Any, Any>, val pair2: Pair<Any, Any>)
 
     @Test
     fun `Should not throw error when multiple properties are of the same type`() {

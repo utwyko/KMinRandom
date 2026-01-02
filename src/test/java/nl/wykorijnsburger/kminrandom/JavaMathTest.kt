@@ -7,11 +7,7 @@ import java.math.BigInteger
 import kotlin.test.Test
 
 internal class JavaMathTest {
-
-    data class JavaMathDC(
-        val bigInteger: BigInteger,
-        val bigDecimal: BigDecimal,
-    )
+    data class JavaMathDC(val bigInteger: BigInteger, val bigDecimal: BigDecimal)
 
     @Test
     fun `Should generate random values for Java Math types`() {

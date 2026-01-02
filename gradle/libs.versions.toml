@@ -1,12 +1,12 @@
 [versions]
-detekt = "1.23.8"
-kotlin = "2.1.10"
+detekt = "2.0.0-alpha.1"
+kotlin = "2.3.0"
 
 [libraries]
 assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.28.1" }
-detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detekt" }
+detekt-ktlint = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref = "detekt" }
 
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+detekt = { id = "dev.detekt", version.ref = "detekt" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.53.0" }

@@ -7,11 +7,7 @@ import java.net.URL
 import kotlin.test.Test
 
 internal class JavaNetTest {
-
-    data class JavaNetDC(
-        val url: URL,
-        val uri: URI,
-    )
+    data class JavaNetDC(val url: URL, val uri: URI)
 
     @Test
     fun `Should generate random values for Java Net types`() {

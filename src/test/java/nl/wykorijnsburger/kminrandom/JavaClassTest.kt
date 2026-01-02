@@ -6,10 +6,7 @@ import assertk.assertions.isNull
 import kotlin.test.Test
 
 internal class JavaClassTest {
-
-    data class JavaClassDC(
-        val sampleJavaClass: SampleJavaClass,
-    )
+    data class JavaClassDC(val sampleJavaClass: SampleJavaClass)
 
     @Test
     fun `Should be able to generate random instance of Java class`() {
