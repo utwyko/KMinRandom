@@ -18,7 +18,7 @@ internal class MinRandomCachedTest {
 
     @Test
     fun `Should cache random instance when using the reified minRandomCached method`() {
-        val newMinRandom = minRandomCached<SampleDC>()
+        val newMinRandom: SampleDC = minRandomCached()
         repeat(10) {
             val minRandomCached = minRandomCached<SampleDC>()
             assertThat(minRandomCached).isEqualTo(newMinRandom)
