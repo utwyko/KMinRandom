@@ -5,7 +5,6 @@ import nl.wykorijnsburger.kminrandom.exception.PrivateConstructorException
 import nl.wykorijnsburger.kminrandom.exception.SelfReferentialException
 import nl.wykorijnsburger.kminrandom.exception.SuppliedValueException
 import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
-import nl.wykorijnsburger.kminrandom.minRandom
 import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.KClassifier
@@ -55,7 +54,7 @@ public fun <T : Any> KClass<T>.minRandom(): T = generateMinRandom(this)
  *
  * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
  */
-public inline fun <reified T: Any> minRandom(): T = T::class.minRandom()
+public inline fun <reified T : Any> minRandom(): T = T::class.minRandom()
 
 /**
  * Generates a minimal random instance of the supplied KClass

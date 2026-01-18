@@ -18,7 +18,7 @@ public fun <T : Any> KClass<T>.minRandomCached(): T = generateMinRandomCached(th
  * Since already generated values can be reused, there is a performance gain from using this method
  * compared to [minRandom].
  */
-public inline fun <reified T: Any> minRandomCached(): T = T::class.minRandomCached()
+public inline fun <reified T : Any> minRandomCached(): T = T::class.minRandomCached()
 
 /**
  * Generates a minimal random instance of the supplied KClass
