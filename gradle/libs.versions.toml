@@ -10,4 +10,4 @@ detekt-ktlint = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 detekt = { id = "dev.detekt", version.ref = "detekt" }
 gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.53.0" }
-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.30.0" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.36.0" }
