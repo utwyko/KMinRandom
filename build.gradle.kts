@@ -10,7 +10,7 @@ plugins {
 }
 
 group = "nl.wykorijnsburger.kminrandom"
-version = "1.0.4"
+version = "2.0.0"
 
 kotlin {
     explicitApi()

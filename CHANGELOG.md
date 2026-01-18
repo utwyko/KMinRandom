@@ -1,4 +1,18 @@
 # Change Log
+## 2.0.0 (18 Jan 2026)
+
+### Breaking Changes
+* **Minimum JVM target raised from 8 to 17.**
+
+### Improvements
+* Simplified reified syntax for `minRandom<T>()` and `minRandomCached<T>()` (thanks @ZzAve).
+
+### Build & Infrastructure
+* Update Kotlin from `1.4.31` to `2.3.0`.
+* Update Gradle from `7.4` to `9.3.0`.
+* Migrate publishing to Sonatype Central Portal via `gradle-maven-publish-plugin`.
+* Migrate from ktlint Gradle Plugin to Detekt 2.0.
+
 ## 1.0.4 (25 Feb 2021)
 * Properly target JVM 8+ compat (thanks @smuldr).
 * Update Kotlin from `1.4.21` to `1.4.31`.
