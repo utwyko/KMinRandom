@@ -37,6 +37,20 @@ internal class MinRandomTest {
         assertThat(randomDC.string).isNotNull()
     }
 
+    @Test
+    fun `Should generate random values for Kotlin Basic Types using the reified syntax`() {
+        val randomDC: BasicTypesDC = minRandom()
+
+        assertThat(randomDC.double).isNotNull()
+        assertThat(randomDC.float).isNotNull()
+        assertThat(randomDC.long).isNotNull()
+        assertThat(randomDC.int).isNotNull()
+        assertThat(randomDC.short).isNotNull()
+        assertThat(randomDC.byte).isNotNull()
+        assertThat(randomDC.boolean).isNotNull()
+        assertThat(randomDC.string).isNotNull()
+    }
+
     data class DCWithNestedDC(val normalField: String, val nestedDC: NestedDC)
 
     data class NestedDC(val normalField: String)

@@ -14,7 +14,6 @@ import kotlin.reflect.KVisibility
 import kotlin.reflect.full.primaryConstructor
 import kotlin.reflect.full.starProjectedType
 import kotlin.reflect.jvm.jvmErasure
-import kotlin.reflect.typeOf
 
 public object KMinRandom {
     /**
@@ -54,12 +53,8 @@ public fun <T : Any> KClass<T>.minRandom(): T = generateMinRandom(this)
  * Generates a minimal random instance of the supplied KClass.
  *
  * A new value is generated on each invocation. If it is fine to reuse values, consider using [minRandomCached].
- *
- * Syntax using the reified type added in Kotlin 1.3.40.
- * See [Kotlin 1.3.40 release notes (Accessing the reified type using reflection on JVM)](https://blog.jetbrains.com/kotlin/2019/06/kotlin-1-3-40-released/)
- * for more details.
  */
-public inline fun <reified T> minRandom(): T = typeOf<T>().jvmErasure.minRandom() as T
+public inline fun <reified T : Any> minRandom(): T = T::class.minRandom()
 
 /**
  * Generates a minimal random instance of the supplied KClass
