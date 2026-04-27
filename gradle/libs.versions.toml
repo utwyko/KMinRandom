@@ -1,5 +1,5 @@
 [versions]
-detekt = "2.0.0-alpha.2"
+detekt = "2.0.0-alpha.3"
 kotlin = "2.3.10"
 
 [libraries]
