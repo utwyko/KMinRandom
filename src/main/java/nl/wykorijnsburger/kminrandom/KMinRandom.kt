@@ -7,13 +7,7 @@ import nl.wykorijnsburger.kminrandom.exception.SuppliedValueException
 import nl.wykorijnsburger.kminrandom.exception.UnsupportedClassException
 import kotlin.random.Random
 import kotlin.reflect.KClass
-import kotlin.reflect.KClassifier
-import kotlin.reflect.KFunction
 import kotlin.reflect.KParameter
-import kotlin.reflect.KVisibility
-import kotlin.reflect.full.primaryConstructor
-import kotlin.reflect.full.starProjectedType
-import kotlin.reflect.jvm.jvmErasure
 
 public object KMinRandom {
     /**
@@ -26,6 +20,7 @@ public object KMinRandom {
     public fun <T : Any> supplyValueForClass(clazz: KClass<T>, value: T) {
         if (!clazz.isInstance(value)) throw SuppliedValueException(clazz)
 
+        // No need to clear checkedClasses: supplying a value can only make more classes supported.
         classToMinRandom[clazz] = { value }
     }
 
@@ -39,6 +34,7 @@ public object KMinRandom {
         } else {
             classToMinRandom.remove(clazz)
         }
+        checkedClasses.clear()
     }
 }
 
@@ -66,79 +62,72 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T = generateMinRandom(
  * unsupported and self-referential types before anything is generated. Nested parameter values are generated
  * with [checkTypes] set to false, as the check on the outermost class already covered them.
  */
+@Suppress("UNCHECKED_CAST")
 private fun <T : Any> generateMinRandom(clazz: KClass<T>, checkTypes: Boolean): T {
-    val objectInstance = clazz.objectInstance
-
     // Supported types can be directly returned without inspecting constructor
-    when {
-        objectInstance != null -> return objectInstance
-        clazz.sealedSubclasses.isNotEmpty() -> return sealedClassMinRandom(clazz)
-        classToMinRandom.containsKey(clazz) -> return clazz.randomInstance() as T
-        clazz.java.isEnum -> return clazz.randomEnum()
+    when (val kind = clazz.kind()) {
+        is ClassKind.ObjectInstance -> return kind.instance as T
+
+        is ClassKind.Sealed -> return kind.subclasses[Random.nextInt(kind.subclasses.size)].minRandom() as T
+
+        is ClassKind.Regular -> {
+            val supplier = classToMinRandom[clazz]
+            if (supplier != null) return supplier() as T
+            if (kind.isEnum) return clazz.randomEnum()
+        }
     }
 
     if (checkTypes) clazz.checkForUnsupportedTypes(mutableSetOf())
 
-    val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw NoConstructorException()
+    val plan = clazz.constructorPlan()
+    val constructor = plan.constructor ?: throw NoConstructorException()
 
-    if (constructor.visibility == KVisibility.PRIVATE) throw PrivateConstructorException()
-
-    val parameters = constructor.parameters
+    if (plan.isPrivate) throw PrivateConstructorException()
 
     // callBy lets the constructor fill in default values, but is slower than call. Only use it when needed.
-    if (parameters.none { it.isOptional }) {
+    // Without optional parameters, the required parameters are all parameters, in order.
+    if (!plan.hasOptionalParameters) {
+        val parameters = plan.requiredParameters
         return constructor.call(*Array(parameters.size) { parameters[it].randomValue() })
     }
 
     val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
-    parameters
-        .filter { !it.isOptional }
-        .forEach { parameterMap[it] = it.randomValue() }
+    plan.requiredParameters.forEach { parameterMap[it.parameter] = it.randomValue() }
 
     return constructor.callBy(parameterMap)
 }
 
-private fun KParameter.randomValue(): Any? {
-    val type = type
-
-    return when {
-        type.isMarkedNullable -> null
-        type.jvmErasure.java.isEnum -> type.randomEnum()
-        else -> type.classifier?.randomInstance()
-    }
+private fun ParameterPlan.randomValue(): Any? = when {
+    isNullable -> null
+    isEnum -> erasure.randomEnum()
+    else -> randomInstance()
 }
 
-@Suppress("UNCHECKED_CAST")
-private fun <T : Any> KClassifier.randomInstance(): T =
-    (classToMinRandom[this]?.invoke() ?: generateMinRandom(starProjectedType.jvmErasure, checkTypes = false)) as T
+private fun ParameterPlan.randomInstance(): Any? {
+    val classifier = classifier ?: return null
+    return classToMinRandom[classifier]?.invoke() ?: generateMinRandom(generatedClass, checkTypes = false)
+}
 
 /**
  * [path] holds the classes from the outermost class down to, but excluding, this class.
  * Encountering a class that is already on the path means the class references itself.
  */
 private fun KClass<*>.checkForUnsupportedTypes(path: MutableSet<KClass<*>>) {
-    if (objectInstance != null) return
+    if (this in checkedClasses) return
+    if (kind() is ClassKind.ObjectInstance) return
     if (classToMinRandom.containsKey(this)) return
 
-    val constructor = getConstructorWithTheLeastArguments()
+    val plan = constructorPlan()
 
     if (this in path) throw SelfReferentialException()
-    if (constructor == null) throw UnsupportedClassException(this)
+    if (plan.constructor == null) throw UnsupportedClassException(this)
 
     path.add(this)
-    constructor.parameters
-        .filter { !it.isOptional && !it.type.isMarkedNullable }
-        .forEach { it.type.jvmErasure.checkForUnsupportedTypes(path) }
+    plan.requiredParameters
+        .filter { !it.isNullable }
+        .forEach { it.erasure.checkForUnsupportedTypes(path) }
     path.remove(this)
+
+    // The whole subtree passed. A later cycle through this class would have been caught here, so this is safe to reuse.
+    checkedClasses.add(this)
 }
-
-private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction<T>? {
-    val primaryConstructor = primaryConstructor
-
-    if (primaryConstructor != null) return primaryConstructor
-
-    return constructors.minByOrNull { it.parameters.size }
-}
-
-private fun <T : Any> sealedClassMinRandom(clazz: KClass<T>) =
-    clazz.sealedSubclasses[Random.nextInt(clazz.sealedSubclasses.size)].minRandom()
