@@ -5,6 +5,7 @@
 * Support `kotlin.uuid.Uuid`.
 * Faster generation of nested classes: unsupported and self-referential types are now checked once per call instead of once per nested class.
 * Faster generation: reflection lookups are cached per class, and classes that passed the unsupported and self-referential type check are not checked again.
+* Faster generation of classes without default values: their constructors are called directly instead of through `callBy`.
 
 ### Build & Infrastructure
 * Update Kotlin from `2.3.10` to `2.4.20`.

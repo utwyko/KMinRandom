@@ -84,16 +84,23 @@ private fun <T : Any> generateMinRandom(clazz: KClass<T>, checkTypes: Boolean): 
 
     if (plan.isPrivate) throw PrivateConstructorException()
 
-    val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
-    plan.requiredParameters.forEach {
-        parameterMap[it.parameter] = when {
-            it.isNullable -> null
-            it.isEnum -> it.erasure.randomEnum()
-            else -> it.randomInstance()
-        }
+    // callBy lets the constructor fill in default values, but is slower than call. Only use it when needed.
+    // Without optional parameters, the required parameters are all parameters, in order.
+    if (!plan.hasOptionalParameters) {
+        val parameters = plan.requiredParameters
+        return constructor.call(*Array(parameters.size) { parameters[it].randomValue() })
     }
 
+    val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
+    plan.requiredParameters.forEach { parameterMap[it.parameter] = it.randomValue() }
+
     return constructor.callBy(parameterMap)
+}
+
+private fun ParameterPlan.randomValue(): Any? = when {
+    isNullable -> null
+    isEnum -> erasure.randomEnum()
+    else -> randomInstance()
 }
 
 private fun ParameterPlan.randomInstance(): Any? {

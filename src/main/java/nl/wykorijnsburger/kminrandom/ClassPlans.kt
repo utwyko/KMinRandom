@@ -28,6 +28,8 @@ internal sealed interface ClassKind {
 internal class ConstructorPlan<T : Any>(val constructor: KFunction<T>?) {
     val isPrivate: Boolean = constructor?.visibility == KVisibility.PRIVATE
 
+    val hasOptionalParameters: Boolean = constructor?.parameters.orEmpty().any { it.isOptional }
+
     val requiredParameters: List<ParameterPlan> =
         constructor?.parameters.orEmpty().filter { !it.isOptional }.map(::ParameterPlan)
 }
