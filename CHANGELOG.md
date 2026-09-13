@@ -1,4 +1,13 @@
 # Change Log
+## Unreleased
+
+### Improvements
+* Support `kotlin.uuid.Uuid`.
+
+### Build & Infrastructure
+* Update Kotlin from `2.3.10` to `2.4.20`.
+* Pin the Kotlin module name to `KMinRandom`, preserving the pre-2.4 default.
+
 ## 2.0.0 (18 Jan 2026)
 
 ### Breaking Changes
