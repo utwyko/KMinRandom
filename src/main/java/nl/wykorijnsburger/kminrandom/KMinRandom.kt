@@ -85,22 +85,27 @@ private fun <T : Any> generateMinRandom(clazz: KClass<T>, checkTypes: Boolean): 
 
     val parameters = constructor.parameters
 
+    // callBy lets the constructor fill in default values, but is slower than call. Only use it when needed.
+    if (parameters.none { it.isOptional }) {
+        return constructor.call(*Array(parameters.size) { parameters[it].randomValue() })
+    }
+
     val parameterMap: MutableMap<KParameter, Any?> = mutableMapOf()
     parameters
         .filter { !it.isOptional }
-        .forEach {
-            val type = it.type
-
-            val randomParameter = when {
-                type.isMarkedNullable -> null
-                type.jvmErasure.java.isEnum -> type.randomEnum()
-                else -> type.classifier?.randomInstance()
-            }
-
-            parameterMap[it] = randomParameter
-        }
+        .forEach { parameterMap[it] = it.randomValue() }
 
     return constructor.callBy(parameterMap)
+}
+
+private fun KParameter.randomValue(): Any? {
+    val type = type
+
+    return when {
+        type.isMarkedNullable -> null
+        type.jvmErasure.java.isEnum -> type.randomEnum()
+        else -> type.classifier?.randomInstance()
+    }
 }
 
 @Suppress("UNCHECKED_CAST")
