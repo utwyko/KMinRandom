@@ -7,6 +7,8 @@ plugins {
     alias(libs.plugins.detekt)
     alias(libs.plugins.gradleVersionsPlugin)
     alias(libs.plugins.mavenPublish)
+    alias(libs.plugins.kotlin.allopen)
+    alias(libs.plugins.kotlinx.benchmark)
 }
 
 group = "nl.wykorijnsburger.kminrandom"
@@ -30,6 +32,66 @@ dependencies {
     implementation(kotlin("reflect"))
     testImplementation(kotlin("test"))
     testImplementation(libs.assertk)
+}
+
+// Benchmarks live in their own source set so they never end up in the published jar.
+sourceSets {
+    create("benchmark")
+}
+
+kotlin {
+    target.compilations.getByName("benchmark")
+        .associateWith(target.compilations.getByName("main"))
+}
+
+dependencies {
+    "benchmarkImplementation"(libs.kotlinx.benchmark.runtime)
+}
+
+// JMH requires @State classes to be open.
+allOpen {
+    annotation("org.openjdk.jmh.annotations.State")
+}
+
+benchmark {
+    targets {
+        register("benchmark")
+    }
+    configurations {
+        // Steady-state cost per call. For profilers (-prof gc, -prof async), run the JMH jar directly (see README).
+        named("main") {
+            exclude("ColdStartBenchmark")
+            warmups = 5
+            iterations = 5
+            iterationTime = 1
+            iterationTimeUnit = "s"
+            mode = "avgt"
+            outputTimeUnit = "ns"
+            reportFormat = "json"
+            advanced("jvmForks", 2)
+        }
+        // Quick check that every benchmark runs; numbers are not reliable.
+        register("smoke") {
+            exclude("ColdStartBenchmark")
+            warmups = 1
+            iterations = 1
+            iterationTime = 200
+            iterationTimeUnit = "ms"
+            mode = "avgt"
+            outputTimeUnit = "ns"
+            advanced("jvmForks", 1)
+        }
+        // First call in a fresh JVM: one invocation per fork. The single-shot mode is set with an
+        // annotation on ColdStartBenchmark, because this DSL only accepts thrpt and avgt.
+        register("coldStart") {
+            include("ColdStartBenchmark")
+            warmups = 0
+            iterations = 1
+            outputTimeUnit = "ms"
+            reportFormat = "json"
+            advanced("jvmForks", 20)
+        }
+    }
 }
 
 // Ensure "org.gradle.jvm.version" is set to "17" in Gradle metadata.

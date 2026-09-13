@@ -76,6 +76,21 @@ or Maven:
 </dependency>
 ```
 
+## Benchmarks
+JMH benchmarks (via [kotlinx-benchmark](https://github.com/Kotlin/kotlinx-benchmark)) live in `src/benchmark` and are not part of `./gradlew check`.
+
+* `./gradlew smokeBenchmark` runs every benchmark once, to check that they work. The numbers are not reliable.
+* `./gradlew benchmark` measures the steady-state cost per call. It takes several minutes; results are written as JSON to `build/reports/benchmarks/main/`.
+* `./gradlew coldStartBenchmark` measures the first call in a fresh JVM (single-shot, 20 forks).
+
+To use JMH profilers, build the JMH jar and run it directly:
+```shell
+./gradlew benchmarkBenchmarkJar
+java -jar build/benchmarks/benchmark/jars/KMinRandom-benchmark-jmh-*-JMH.jar -prof gc NestedBenchmark
+```
+
+Compare results against a run on `main`, preferably on an idle machine that is plugged in.
+
 ## License
     Copyright 2018 Wyko Rijnsburger
     
