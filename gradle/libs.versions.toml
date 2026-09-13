@@ -1,6 +1,6 @@
 [versions]
-detekt = "2.0.0-alpha.3"
-kotlin = "2.3.10"
+detekt = "2.0.0-alpha.6"
+kotlin = "2.4.20"
 
 [libraries]
 assertk = { module = "com.willowtreeapps.assertk:assertk", version = "0.28.1" }
@@ -9,5 +9,5 @@ detekt-ktlint = { module = "dev.detekt:detekt-rules-ktlint-wrapper", version.ref
 [plugins]
 kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 detekt = { id = "dev.detekt", version.ref = "detekt" }
-gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.54.0" }
-mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.36.0" }
+gradleVersionsPlugin = { id = "com.github.ben-manes.versions", version = "0.62.0" }
+mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
