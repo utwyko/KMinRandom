@@ -59,7 +59,14 @@ public inline fun <reified T : Any> minRandom(): T = T::class.minRandom()
 /**
  * Generates a minimal random instance of the supplied KClass
  */
-public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
+public fun <T : Any> generateMinRandom(clazz: KClass<T>): T = generateMinRandom(clazz, checkTypes = true)
+
+/**
+ * When [checkTypes] is true, [clazz] and all classes nested in its constructor parameters are checked for
+ * unsupported and self-referential types before anything is generated. Nested parameter values are generated
+ * with [checkTypes] set to false, as the check on the outermost class already covered them.
+ */
+private fun <T : Any> generateMinRandom(clazz: KClass<T>, checkTypes: Boolean): T {
     val objectInstance = clazz.objectInstance
 
     // Supported types can be directly returned without inspecting constructor
@@ -70,7 +77,7 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
         clazz.java.isEnum -> return clazz.randomEnum()
     }
 
-    clazz.checkForUnsupportedTypes(mutableSetOf())
+    if (checkTypes) clazz.checkForUnsupportedTypes(mutableSetOf())
 
     val constructor = clazz.getConstructorWithTheLeastArguments() ?: throw NoConstructorException()
 
@@ -98,25 +105,26 @@ public fun <T : Any> generateMinRandom(clazz: KClass<T>): T {
 
 @Suppress("UNCHECKED_CAST")
 private fun <T : Any> KClassifier.randomInstance(): T =
-    (classToMinRandom[this]?.invoke() ?: this.starProjectedType.jvmErasure.minRandom()) as T
+    (classToMinRandom[this]?.invoke() ?: generateMinRandom(starProjectedType.jvmErasure, checkTypes = false)) as T
 
-private fun <T : Any> KClass<T>.checkForUnsupportedTypes(checkedTypes: MutableSet<KClass<*>>) {
+/**
+ * [path] holds the classes from the outermost class down to, but excluding, this class.
+ * Encountering a class that is already on the path means the class references itself.
+ */
+private fun KClass<*>.checkForUnsupportedTypes(path: MutableSet<KClass<*>>) {
     if (objectInstance != null) return
     if (classToMinRandom.containsKey(this)) return
 
     val constructor = getConstructorWithTheLeastArguments()
 
-    if (checkedTypes.contains(this)) throw SelfReferentialException()
+    if (this in path) throw SelfReferentialException()
     if (constructor == null) throw UnsupportedClassException(this)
 
+    path.add(this)
     constructor.parameters
         .filter { !it.isOptional && !it.type.isMarkedNullable }
-        .map { it.type.jvmErasure }
-        .forEach {
-            checkedTypes.add(this)
-            val checkedTypesCopy = checkedTypes.toMutableSet()
-            it.checkForUnsupportedTypes(checkedTypesCopy)
-        }
+        .forEach { it.type.jvmErasure.checkForUnsupportedTypes(path) }
+    path.remove(this)
 }
 
 private fun <T : Any> KClass<T>.getConstructorWithTheLeastArguments(): KFunction<T>? {
