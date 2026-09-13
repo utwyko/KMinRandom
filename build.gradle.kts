@@ -14,6 +14,10 @@ version = "2.0.0"
 
 kotlin {
     explicitApi()
+
+    // Kotlin 2.4 defaults the module name to "group:project". Keep the pre-2.4 name so the
+    // .kotlin_module file and mangled internal member names stay unchanged.
+    compilerOptions.moduleName.set(project.name)
 }
 
 repositories {

@@ -17,6 +17,7 @@ import kotlin.random.Random
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
 import kotlin.reflect.jvm.jvmErasure
+import kotlin.uuid.Uuid
 
 @Suppress("MagicNumber")
 internal val standardClassToMinRandom = mapOf<KClass<*>, () -> Any>(
@@ -58,6 +59,8 @@ internal val standardClassToMinRandom = mapOf<KClass<*>, () -> Any>(
     Date::class to { Date.from(Instant.now()) },
     Optional::class to { Optional.empty<Any>() },
     UUID::class to { UUID.randomUUID() },
+    // Kotlin.Uuid
+    Uuid::class to { Uuid.random() },
     // Java.Net
     URI::class to { randomURI() },
     URL::class to { randomURI().toURL() },
