@@ -13,5 +13,5 @@ kotlin-gradlePluginJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotli
 kotlin-allopen = { id = "org.jetbrains.kotlin.plugin.allopen", version.ref = "kotlin" }
 kotlinx-benchmark = { id = "org.jetbrains.kotlinx.benchmark", version.ref = "kotlinx-benchmark" }
 detekt = { id = "dev.detekt", version.ref = "detekt" }
-gradleVersionsPlugin = { id = "io.github.ben-manes.versions", version = "0.62.0" }
+gradleVersionsPlugin = { id = "io.github.ben-manes.versions", version = "0.64.0" }
 mavenPublish = { id = "com.vanniktech.maven.publish", version = "0.37.0" }
